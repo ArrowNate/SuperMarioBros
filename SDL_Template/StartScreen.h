@@ -11,7 +11,7 @@ private:
 	Timer* m_pTimer;
 	InputManager* m_pInputManager;
 
-
+	TextureGL* m_pTopScore;
 
 	TextureGL* m_pLogo;
 
