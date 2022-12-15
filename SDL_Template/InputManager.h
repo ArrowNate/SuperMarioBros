@@ -37,7 +37,7 @@ namespace SDLFramework {
 		bool MouseButtonReleased(MouseButton mouseButton);
 
 		Vector2 MousePosition();
-
+		
 		void Update();
 		void UpdatePrevInput();
 
