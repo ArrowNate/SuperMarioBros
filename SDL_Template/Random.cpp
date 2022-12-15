@@ -2,9 +2,9 @@
 
 namespace SDLFramework {
 
-	Random* Random::sInstance = nullptr;
+	Random * Random::sInstance = nullptr;
 
-	Random* Random::Instance() {
+	Random * Random::Instance() {
 		if (sInstance == nullptr) {
 			sInstance = new Random();
 		}

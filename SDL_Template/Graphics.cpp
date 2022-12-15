@@ -5,11 +5,11 @@
 
 namespace SDLFramework {
 
-	Graphics* Graphics::sInstance = nullptr;
+	Graphics * Graphics::sInstance = nullptr;
 	bool Graphics::sInitialized = false;
 
 	// static member functions
-	Graphics* Graphics::Instance() {
+	Graphics * Graphics::Instance() {
 		if (sInstance == nullptr) {
 			sInstance =  new GraphicsGL(); 
 		}
@@ -37,7 +37,7 @@ namespace SDLFramework {
 			return nullptr;
 		}
 
-		tex = SDL_CreateTextureFromSurface(m_pRenderer, surface);
+		tex = SDL_CreateTextureFromSurface(mRenderer, surface);
 		if (tex == nullptr) {
 			std::cerr << "Unable to create texture from surface! IMG Error: " << IMG_GetError() << std::endl;
 			return nullptr;
@@ -55,7 +55,7 @@ namespace SDLFramework {
 			return nullptr;
 		}
 
-		SDL_Texture* tex = SDL_CreateTextureFromSurface(m_pRenderer, surface);
+		SDL_Texture* tex = SDL_CreateTextureFromSurface(mRenderer, surface);
 		if (tex == nullptr) {
 			std::cerr << "CreateTextTexture:: SDL_CreateTextureFromSurface Error: " << SDL_GetError() << std::endl;
 			return nullptr;
@@ -88,15 +88,15 @@ namespace SDLFramework {
 	}
 
 	//private member functions
-	Graphics::Graphics() : m_pRenderer(nullptr) {
+	Graphics::Graphics() : mRenderer(nullptr) {
 		
 	}
 
 	Graphics::~Graphics() {
-		SDL_DestroyWindow(m_pWindow);
+		SDL_DestroyWindow(mWindow);
 
 		
-		m_pWindow = nullptr;
+		mWindow = nullptr;
 
 		TTF_Quit();
 		IMG_Quit();
@@ -108,20 +108,20 @@ namespace SDLFramework {
 			return false;
 		}
 		
-		m_pWindow = SDL_CreateWindow(
+		mWindow = SDL_CreateWindow(
 			WINDOW_TITLE,				// window title
 			SDL_WINDOWPOS_UNDEFINED,	// window xpos
 			SDL_WINDOWPOS_UNDEFINED,	// window ypos
 			SCREEN_WIDTH,				// window width
 			SCREEN_HEIGHT,				// window height
 			SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);			// window flags
-		if (m_pWindow == nullptr) {
+		if (mWindow == nullptr) {
 			std::cerr << "Unable to create Window! SDL Error: " << SDL_GetError() << std::endl;
 			return false;
 		}
 
-		m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, SDL_RENDERER_ACCELERATED);
-		if (m_pRenderer == nullptr) {
+		mRenderer = SDL_CreateRenderer(mWindow, -1, SDL_RENDERER_ACCELERATED);
+		if (mRenderer == nullptr) {
 			std::cerr << "Unable to create renderer! SDL Error: " << SDL_GetError() << std::endl;
 			return false;
 		}

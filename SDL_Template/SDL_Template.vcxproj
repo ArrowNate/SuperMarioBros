@@ -23,7 +23,7 @@
     <ProjectGuid>{7BA8C2D7-4E80-41E0-A380-DDBF0F1FC078}</ProjectGuid>
     <RootNamespace>SDLTemplate</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>SuperMarioBros</ProjectName>
+    <ProjectName>GalagaSDL</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -77,11 +77,11 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\SDL\glew-2.2.0\include\GL;$(ProjectDir)..\SDL\SDL2-devel-2.24.2-VC\SDL2-2.24.2\include;$(ProjectDir)glm;$(ProjectDir)..\SDL\SDL2_ttf-devel-2.20.1-VC\SDL2_ttf-2.20.1\include;$(ProjectDir)..\SDL\SDL2_mixer-devel-2.6.2-VC\SDL2_mixer-2.6.2\include;$(ProjectDir)..\SDL\SDL2_image-devel-2.0.4-VC\SDL2_image-2.0.4\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\SDL\SDL2-devel-2.24.2-VC\SDL2-2.24.2\include;$(ProjectDir)..\SDL\SDL2_ttf-devel-2.20.1-VC\SDL2_ttf-2.20.1\include;$(ProjectDir)..\SDL\SDL2_image-devel-2.0.4-VC\SDL2_image-2.0.4\include;$(ProjectDir)..\SDL\glew-2.2.0-win32\glew-2.2.0\include\GL;$(ProjectDir)glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\SDL\glew-2.2.0\lib\Release\Win32;$(ProjectDir)..\SDL\SDL2_image-devel-2.0.4-VC\SDL2_image-2.0.4\lib\x86;$(ProjectDir)..\SDL\SDL2_mixer-devel-2.6.2-VC\SDL2_mixer-2.6.2\lib\x86;$(ProjectDir)..\SDL\SDL2_ttf-devel-2.20.1-VC\SDL2_ttf-2.20.1\lib\x86;$(ProjectDir)..\SDL\SDL2-devel-2.24.2-VC\SDL2-2.24.2\lib\x86</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;glew32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\SDL\SDL2-devel-2.24.2-VC\SDL2-2.24.2\lib\x86;$(ProjectDir)..\SDL\SDL2_ttf-devel-2.20.1-VC\SDL2_ttf-2.20.1\lib\x86;$(ProjectDir)..\SDL\SDL2_image-devel-2.0.4-VC\SDL2_image-2.0.4\lib\x86;$(ProjectDir)..\SDL\glew-2.2.0\lib\Release\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;glew32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
     <PostBuildEvent>
@@ -95,15 +95,16 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\SDL2-2.0.10\include;C:\SDL2_image-2.0.4\include;C:\SDL2_ttf-2.0.15\include;C:\SDL2_mixer-2.0.4\include;C:\glew-2.1.0\include\GL;$(ProjectDir)glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\SDL\SDL2-devel-2.24.2-VC\SDL2-2.24.2\include;$(ProjectDir)..\SDL\SDL2_ttf-devel-2.20.1-VC\SDL2_ttf-2.20.1\include;$(ProjectDir)..\SDL\SDL2_image-devel-2.0.4-VC\SDL2_image-2.0.4\include;$(ProjectDir)..\SDL\glew-2.2.0-win32\glew-2.2.0\include\GL;$(ProjectDir)glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>C:\SDL2-2.0.10\lib\x64;C:\SDL2_image-2.0.4\lib\x64;C:\SDL2_ttf-2.0.15\lib\x64;C:\SDL2_mixer-2.0.4\lib\x64;C:\glew-2.1.0\lib\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;glew32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>copy /y "$(ProjectDir)..\dep\devel\x64\*.dll" "$(OutDir)
+      <Command>copy /y "$(ProjectDir)..\dep\devel\x86\*.dll" "$(OutDir)"
 xcopy "$(ProjectDir)..\Assets\*" "$(OutDir)Assets\" /y /s
 xcopy "$(ProjectDir)..\Data\*" "$(OutDir)Data\" /y /s</Command>
     </PostBuildEvent>
@@ -116,13 +117,13 @@ xcopy "$(ProjectDir)..\Data\*" "$(OutDir)Data\" /y /s</Command>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\SDL\glew-2.2.0\include\GL;$(ProjectDir)..\SDL\SDL2-devel-2.24.2-VC\SDL2-2.24.2\include;$(ProjectDir)glm;$(ProjectDir)..\SDL\SDL2_ttf-devel-2.20.1-VC\SDL2_ttf-2.20.1\include;$(ProjectDir)..\SDL\SDL2_mixer-devel-2.6.2-VC\SDL2_mixer-2.6.2\include;$(ProjectDir)..\SDL\SDL2_image-devel-2.0.4-VC\SDL2_image-2.0.4\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\SDL\SDL2-devel-2.24.2-VC\SDL2-2.24.2\include;$(ProjectDir)..\SDL\SDL2_ttf-devel-2.20.1-VC\SDL2_ttf-2.20.1\include;$(ProjectDir)..\SDL\SDL2_image-devel-2.0.4-VC\SDL2_image-2.0.4\include;$(ProjectDir)..\SDL\glew-2.2.0-win32\glew-2.2.0\include\GL;$(ProjectDir)glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(ProjectDir)..\SDL\glew-2.2.0\lib\Release\Win32;$(ProjectDir)..\SDL\SDL2_image-devel-2.0.4-VC\SDL2_image-2.0.4\lib\x86;$(ProjectDir)..\SDL\SDL2_mixer-devel-2.6.2-VC\SDL2_mixer-2.6.2\lib\x86;$(ProjectDir)..\SDL\SDL2_ttf-devel-2.20.1-VC\SDL2_ttf-2.20.1\lib\x86;$(ProjectDir)..\SDL\SDL2-devel-2.24.2-VC\SDL2-2.24.2\lib\x86</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;glew32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\SDL\SDL2-devel-2.24.2-VC\SDL2-2.24.2\lib\x86;$(ProjectDir)..\SDL\SDL2_ttf-devel-2.20.1-VC\SDL2_ttf-2.20.1\lib\x86;$(ProjectDir)..\SDL\SDL2_image-devel-2.0.4-VC\SDL2_image-2.0.4\lib\x86;$(ProjectDir)..\SDL\glew-2.2.0\lib\Release\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;glew32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
@@ -138,17 +139,18 @@ xcopy "$(ProjectDir)..\Data\*" "$(OutDir)Data\" /y /s</Command>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\SDL2-2.0.10\include;C:\SDL2_image-2.0.4\include;C:\SDL2_ttf-2.0.15\include;C:\SDL2_mixer-2.0.4\include;C:\glew-2.1.0\include\GL;$(ProjectDir)glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\SDL\SDL2-devel-2.24.2-VC\SDL2-2.24.2\include;$(ProjectDir)..\SDL\SDL2_ttf-devel-2.20.1-VC\SDL2_ttf-2.20.1\include;$(ProjectDir)..\SDL\SDL2_image-devel-2.0.4-VC\SDL2_image-2.0.4\include;$(ProjectDir)..\SDL\glew-2.2.0-win32\glew-2.2.0\include\GL;$(ProjectDir)glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>C:\SDL2-2.0.10\lib\x64;C:\SDL2_image-2.0.4\lib\x64;C:\SDL2_ttf-2.0.15\lib\x64;C:\SDL2_mixer-2.0.4\lib\x64;C:\glew-2.1.0\lib\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;glew32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>copy /y "$(ProjectDir)..\dep\devel\x64\*.dll" "$(OutDir)
+      <Command>copy /y "$(ProjectDir)..\dep\devel\x86\*.dll" "$(OutDir)"
 xcopy "$(ProjectDir)..\Assets\*" "$(OutDir)Assets\" /y /s
 xcopy "$(ProjectDir)..\Data\*" "$(OutDir)Data\" /y /s</Command>
     </PostBuildEvent>
@@ -156,7 +158,7 @@ xcopy "$(ProjectDir)..\Data\*" "$(OutDir)Data\" /y /s</Command>
   <ItemGroup>
     <ClCompile Include="AnimatedTexture.cpp" />
     <ClCompile Include="AssetManager.cpp" />
-    <ClCompile Include="AudioManager.cpp" />
+    <ClCompile Include="BezierPath.cpp" />
     <ClCompile Include="BoxCollider.cpp" />
     <ClCompile Include="CircleCollider.cpp" />
     <ClCompile Include="Collider.cpp" />
@@ -173,7 +175,6 @@ xcopy "$(ProjectDir)..\Data\*" "$(OutDir)Data\" /y /s</Command>
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="ScreenManager.cpp" />
     <ClCompile Include="ShaderUtil.cpp" />
-    <ClCompile Include="StartScreen.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureGL.cpp" />
     <ClCompile Include="TextureSDL.cpp" />
@@ -183,13 +184,14 @@ xcopy "$(ProjectDir)..\Data\*" "$(OutDir)Data\" /y /s</Command>
   <ItemGroup>
     <ClInclude Include="AnimatedTexture.h" />
     <ClInclude Include="AssetManager.h" />
-    <ClInclude Include="AudioManager.h" />
     <ClInclude Include="BoxCollider.h" />
+    <ClInclude Include="CaptureBeam.h" />
     <ClInclude Include="CircleCollider.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="GameEntity.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="Graphics.h" />
+    <ClInclude Include="BezierPath.h" />
     <ClInclude Include="GraphicsSDL.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="MathHelper.h" />
@@ -199,7 +201,6 @@ xcopy "$(ProjectDir)..\Data\*" "$(OutDir)Data\" /y /s</Command>
     <ClInclude Include="Random.h" />
     <ClInclude Include="ScreenManager.h" />
     <ClInclude Include="ShaderUtil.h" />
-    <ClInclude Include="StartScreen.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureGL.h" />

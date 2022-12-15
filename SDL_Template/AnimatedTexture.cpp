@@ -3,7 +3,7 @@
 namespace SDLFramework {
 	void AnimatedTexture::RunAnimation() {
 		if (!mAnimationDone) {
-			mAnimationTimer += m_pTimer->DeltaTime();
+			mAnimationTimer += mTimer->DeltaTime();
 
 			if (mAnimationTimer >= mAnimationSpeed) {
 				if (mWrapMode == Loop) {
@@ -28,7 +28,7 @@ namespace SDLFramework {
 
 	AnimatedTexture::AnimatedTexture(std::string filename, int x, int y, int w, int h, int frameCount, float animationSpeed, AnimDir animationDir, bool managed)
 		: TextureGL(filename, x, y, w, h, managed) {
-		m_pTimer = Timer::Instance();
+		mTimer = Timer::Instance();
 
 		mStartX = x;
 		mStartY = y;

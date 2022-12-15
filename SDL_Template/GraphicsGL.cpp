@@ -16,15 +16,20 @@ namespace SDLFramework {
 	{
 		sInitialized = Init();
 
+
+
 	}
 
 	GraphicsGL::~GraphicsGL()
 	{
-		SDL_GL_DeleteContext(m_pWindow);
+
+
+		SDL_GL_DeleteContext(mWindow);
 	}
 
 	void GraphicsGL::DrawSprite(TextureGL& texture, SDL_Rect* srcRect /*= nullptr*/, SDL_Rect* dstRect /*= nullptr*/, float angle /*= 0.0f*/, SDL_RendererFlip flip /*= SDL_FLIP_NONE*/)
 	{
+
 
 		float rad = angle * (3.1415926535 / 180);
 
@@ -89,7 +94,7 @@ namespace SDLFramework {
 	void GraphicsGL::Render()
 	{
 		//Swap out buffer and draw to the screen
-		SDL_GL_SwapWindow(m_pWindow);
+		SDL_GL_SwapWindow(mWindow);
 		
 	}
 
@@ -99,7 +104,7 @@ namespace SDLFramework {
 			return false;
 
 		//Setup openGL Context
-		glContext = SDL_GL_CreateContext(m_pWindow);
+		glContext = SDL_GL_CreateContext(mWindow);
 		if (glContext == nullptr)
 		{
 			std::cerr << "SDL_GL context could not be created!";
@@ -114,12 +119,13 @@ namespace SDLFramework {
 
 		//Enables a double buffer window - removes flickering.
 		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-		glClearColor(0.4f, 0.6f, 1.0f, 1.0f);
+		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glEnable(GL_TEXTURE_2D);
 
 
 		//Enable Shader and Render data
 		InitLoadShaderData();
+
 
 		return true;
 	}
@@ -135,8 +141,8 @@ namespace SDLFramework {
 		}
 
 		//Get the exact PIXEL with and height from the Texture class
-		float height = texGL->m_pSurf->h;
-		float width = texGL->m_pSurf->w;
+		float height = texGL->mSurf->h;
+		float width = texGL->mSurf->w;
 
 		if (quadVAO == 0)
 			glGenBuffers(1, &quadVAO);

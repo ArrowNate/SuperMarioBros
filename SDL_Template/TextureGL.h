@@ -21,7 +21,7 @@ namespace SDLFramework {
 		bool rendered;
 		unsigned char* data;
 		SDL_RendererFlip Flip;
-		SDL_Surface* m_pSurf;
+		SDL_Surface* mSurf;
 
 		// Generates texture from image data
 		void Generate();

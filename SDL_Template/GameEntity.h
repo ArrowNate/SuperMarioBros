@@ -16,7 +16,7 @@ namespace SDLFramework {
 		Vector2 mScale;
 
 		bool mActive;
-		GameEntity* m_pParent;
+		GameEntity * mParent;
 
 	public:
 		GameEntity(float x = 0.0f, float y = 0.0f);
@@ -37,7 +37,7 @@ namespace SDLFramework {
 		bool Active() const;
 
 		void Parent(GameEntity * parent);
-		GameEntity* Parent() const;
+		GameEntity * Parent() const;
 
 		void Translate(Vector2 vec, Space space = Local);
 		void Rotate(float amount);

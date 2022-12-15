@@ -6,10 +6,10 @@
 
 namespace SDLFramework {
 
-	AssetManager* AssetManager::sInstance = nullptr;
-	std::map<std::string, ShaderUtil> AssetManager::mShaders;
+	AssetManager * AssetManager::sInstance = nullptr;
+	std::map<std::string, ShaderUtil> AssetManager::Shaders;
 
-	AssetManager* AssetManager::Instance() {
+	AssetManager * AssetManager::Instance() {
 		if (sInstance == nullptr) {
 			sInstance = new AssetManager();
 		}
@@ -26,69 +26,55 @@ namespace SDLFramework {
 	}
 
 	AssetManager::~AssetManager() {
-		for (auto tex : m_pTextures) {
+		for (auto tex : mTextures) {
 			if (tex.second != nullptr) {
 				SDL_DestroyTexture(tex.second);
 			}
 		}
-		m_pTextures.clear();
+		mTextures.clear();
 
-		for (auto surf : m_pSurfaceText) {
+		for (auto surf : mSurfaceText) {
 			if (surf.second != nullptr) {
 				SDL_FreeSurface(surf.second);
 			}
 		}
-		m_pSurfaceText.clear();
+		mSurfaceText.clear();
 
-		for (auto surf : m_pSurfaceTextures) {
+		for (auto surf : mSurfaceTextures) {
 			if (surf.second != nullptr) {
 				SDL_FreeSurface(surf.second);
 			}
 		}
-		m_pSurfaceTextures.clear();
+		mSurfaceTextures.clear();
 
-		for (auto text : m_pText) {
+		for (auto text : mText) {
 			if (text.second != nullptr) {
 				SDL_DestroyTexture(text.second);
 			}
 		}
-		m_pText.clear();
+		mText.clear();
 
-		for (auto font : m_pFonts) {
+		for (auto font : mFonts) {
 			if (font.second != nullptr) {
 				TTF_CloseFont(font.second);
 			}
 		}
-		m_pFonts.clear();
-
-		for (auto mus : m_pMusic) {
-			if (mus.second != nullptr) {
-				Mix_FreeMusic(mus.second);
-			}
-		}
-		m_pMusic.clear();
-
-		for (auto sfx : m_pSFX) {
-			if (sfx.second != nullptr) {
-				Mix_FreeChunk(sfx.second);
-			}
-		}
-		m_pSFX.clear();
+		mFonts.clear();
 	}
 
 	SDL_Texture * AssetManager::GetTexture(std::string filename, bool managed) {
 		std::string fullPath = SDL_GetBasePath();
 		fullPath.append("Assets/" + filename);
 
-		if (m_pTextures[fullPath] == nullptr) {
-			m_pTextures[fullPath] = Graphics::Instance()->LoadTexture(fullPath);
+		if (mTextures[fullPath] == nullptr) {
+			mTextures[fullPath] = Graphics::Instance()->LoadTexture(fullPath);
 		}
 
-		if (m_pTextures[fullPath] != nullptr && managed) {
-			m_pTextureRefCount[m_pTextures[fullPath]] += 1;
+		if (mTextures[fullPath] != nullptr && managed) {
+			mTextureRefCount[mTextures[fullPath]] += 1;
 		}
 
-		return m_pTextures[fullPath];
+		return mTextures[fullPath];
 	}
 
 
@@ -97,15 +83,15 @@ namespace SDLFramework {
 		std::string fullPath = SDL_GetBasePath();
 		fullPath.append("Assets/" + filename);
 
-		if (m_pSurfaceTextures[fullPath] == nullptr) {
-			m_pSurfaceTextures[fullPath] = Graphics::Instance()->GetSurfaceTexture(fullPath);
+		if (mSurfaceTextures[fullPath] == nullptr) {
+			mSurfaceTextures[fullPath] = Graphics::Instance()->GetSurfaceTexture(fullPath);
 		}
 
-		if (m_pSurfaceTextures[fullPath] != nullptr && managed) {
-			m_pSurfaceRefCount[m_pSurfaceTextures[fullPath]] += 1;
+		if (mSurfaceTextures[fullPath] != nullptr && managed) {
+			mSurfaceRefCount[mSurfaceTextures[fullPath]] += 1;
 		}
 
-		return m_pSurfaceTextures[fullPath];
+		return mSurfaceTextures[fullPath];
 	}
 
 
@@ -115,16 +101,16 @@ namespace SDLFramework {
 		ss << size << (int)color.r << (int)color.g << (int)color.b;
 		std::string key = text + filename + ss.str();
 
-		if (m_pSurfaceText[key] == nullptr) {
+		if (mSurfaceText[key] == nullptr) {
 			TTF_Font* font = GetFont(filename, size);
-			m_pSurfaceText[key] = Graphics::Instance()->GetSurfaceText(font, text, color);
+			mSurfaceText[key] = Graphics::Instance()->GetSurfaceText(font, text, color);
 		}
 
-		if (m_pSurfaceText[key] != nullptr && managed) {
-			m_pSurfaceRefCount[m_pSurfaceText[key]] += 1;
+		if (mSurfaceText[key] != nullptr && managed) {
+			mSurfaceRefCount[mSurfaceText[key]] += 1;
 		}
 
-		return m_pSurfaceText[key];
+		return mSurfaceText[key];
 	}
 
 	TTF_Font* AssetManager::GetFont(std::string filename, int size) {
@@ -135,14 +121,14 @@ namespace SDLFramework {
 		ss << size;
 		std::string key = fullPath + ss.str();
 
-		if (m_pFonts[key] == nullptr) {
-			m_pFonts[key] = TTF_OpenFont(fullPath.c_str(), size);
-			if (m_pFonts[key] == nullptr) {
+		if (mFonts[key] == nullptr) {
+			mFonts[key] = TTF_OpenFont(fullPath.c_str(), size);
+			if (mFonts[key] == nullptr) {
 				std::cerr << "Unable to load font " << filename << "! TTF Error: " << TTF_GetError() << std::endl;
 			}
 		}
 
-		return m_pFonts[key];
+		return mFonts[key];
 	}
 
 
@@ -195,86 +181,49 @@ namespace SDLFramework {
 		ss << size << (int)color.r << (int)color.g << (int)color.b;
 		std::string key = text + filename + ss.str();
 
-		if (m_pText[key] == nullptr) {
+		if (mText[key] == nullptr) {
 			TTF_Font * font = GetFont(filename, size);
-			m_pText[key] = Graphics::Instance()->CreateTextTexture(font, text, color);
+			mText[key] = Graphics::Instance()->CreateTextTexture(font, text, color);
 		}
 
-		if (m_pText[key] != nullptr && managed) {
-			m_pTextureRefCount[m_pText[key]] += 1;
+		if (mText[key] != nullptr && managed) {
+			mTextureRefCount[mText[key]] += 1;
 		}
 
-		return m_pText[key];
+		return mText[key];
 	}
-
-	Mix_Music * AssetManager::GetMusic(std::string filename, bool managed) {
-		std::string fullPath = SDL_GetBasePath();
-		fullPath.append("Assets/" + filename);
-
-		if (m_pMusic[fullPath] == nullptr) {
-			m_pMusic[fullPath] = Mix_LoadMUS(fullPath.c_str());
-		}
-
-		if (m_pMusic[fullPath] == nullptr) {
-			std::cerr << "Unable to load music " << filename << "! Mix error: " << Mix_GetError() << std::endl;
-		}
-		else if (managed) {
-			m_pMusicRefCount[m_pMusic[fullPath]] += 1;
-		}
-
-		return m_pMusic[fullPath];
-	}
-
-	Mix_Chunk * AssetManager::GetSFX(std::string filename, bool managed) {
-		std::string fullPath = SDL_GetBasePath();
-		fullPath.append("Assets/" + filename);
-
-		/*if (mSFX[fullPath] == nullptr) {
-			mSFX[fullPath] = Mix_LoadWAV(fullPath.c_str());
-		}
-
-		if (mSFX[fullPath] == nullptr) {
-			std::cerr << "Unable to load SFX " << filename << "! Mix error: " << Mix_GetError() << std::endl;
-		}
-		else if (managed) {
-			mSFXRefCount[mSFX[fullPath]] += 1;
-		}*/
-
-		return m_pSFX[fullPath];
-	}
-
 
 	ShaderUtil AssetManager::GetShader(std::string name)
 	{
-		return mShaders[name];
+		return Shaders[name];
 
 	}
 
 
 	ShaderUtil AssetManager::LoadShader(const GLchar* vShaderFile, const GLchar* fShaderFile, const GLchar* gShaderFile, std::string name)
 	{
-		mShaders[name] = loadShaderFromFile(vShaderFile, fShaderFile, gShaderFile);
-		return mShaders[name];
+		Shaders[name] = loadShaderFromFile(vShaderFile, fShaderFile, gShaderFile);
+		return Shaders[name];
 	}
 
 	void AssetManager::DestroyTexture(SDL_Texture* texture) {
 
-		if (m_pTextureRefCount.find(texture) != m_pTextureRefCount.end())
+		if (mTextureRefCount.find(texture) != mTextureRefCount.end())
 		{
-			m_pTextureRefCount[texture] -= 1;
-			if (m_pTextureRefCount[texture] == 0) {
-				for (auto elem : m_pTextures) {
+			mTextureRefCount[texture] -= 1;
+			if (mTextureRefCount[texture] == 0) {
+				for (auto elem : mTextures) {
 					if (elem.second == texture) {
 						SDL_DestroyTexture(elem.second);
-						m_pTextures.erase(elem.first);
+						mTextures.erase(elem.first);
 						return; // work finished, leave function
 					}
 				}
 
-				for (auto elem : m_pText) {
+				for (auto elem : mText) {
 					if (elem.second == texture) {
 						SDL_DestroyTexture(elem.second);
-						m_pText.erase(elem.first);
+						mText.erase(elem.first);
 						return; // work finished, leave function
 					}
 				}
@@ -285,54 +234,26 @@ namespace SDLFramework {
 
 	void AssetManager::DestroySurface(SDL_Surface* surface)
 	{
-		if (m_pSurfaceRefCount.find(surface) != m_pSurfaceRefCount.end())
+		if (mSurfaceRefCount.find(surface) != mSurfaceRefCount.end())
 		{
-			m_pSurfaceRefCount[surface] -= 1;
-			if (m_pSurfaceRefCount[surface] == 0) {
-				for (auto elem : m_pSurfaceTextures) {
+			mSurfaceRefCount[surface] -= 1;
+			if (mSurfaceRefCount[surface] == 0) {
+				for (auto elem : mSurfaceTextures) {
 					if (elem.second == surface) {
 						SDL_FreeSurface(elem.second);
-						m_pSurfaceTextures.erase(elem.first);
+						mSurfaceTextures.erase(elem.first);
 						return; // work finished, leave function
 					}
 				}
-				for (auto elem : m_pSurfaceText) {
+				for (auto elem : mSurfaceText) {
 					if (elem.second == surface) {
 						SDL_FreeSurface(elem.second);
-						m_pSurfaceText.erase(elem.first);
+						mSurfaceText.erase(elem.first);
 						return; // work finished, leave function
 					}
 				}
 			}
 
-		}
-	}
-
-	void AssetManager::DestroyMusic(Mix_Music* music) {
-		for (auto elem : m_pMusic) {
-			if (elem.second == music) {
-				m_pMusicRefCount[elem.second] -= 1;
-
-				if (m_pMusicRefCount[elem.second] == 0) {
-					Mix_FreeMusic(elem.second);
-					m_pMusic.erase(elem.first);
-				}
-				return; // work finished, leave function
-			}
-		}
-	}
-
-	void AssetManager::DestroySFX(Mix_Chunk * sfx) {
-		for (auto elem : m_pSFX) {
-			if (elem.second == sfx) {
-				m_pSFXRefCount[elem.second] -= 1;
-
-				if (m_pSFXRefCount[elem.second] == 0) {
-					Mix_FreeChunk(elem.second);
-					m_pSFX.erase(elem.first);
-				}
-				return; // work finished, leave function
-			}
 		}
 	}
 }
