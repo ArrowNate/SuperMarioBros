@@ -175,6 +175,7 @@ xcopy "$(ProjectDir)..\Data\*" "$(OutDir)Data\" /y /s</Command>
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="ScreenManager.cpp" />
     <ClCompile Include="ShaderUtil.cpp" />
+    <ClCompile Include="StartScreen.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureGL.cpp" />
     <ClCompile Include="TextureSDL.cpp" />
@@ -201,6 +202,7 @@ xcopy "$(ProjectDir)..\Data\*" "$(OutDir)Data\" /y /s</Command>
     <ClInclude Include="Random.h" />
     <ClInclude Include="ScreenManager.h" />
     <ClInclude Include="ShaderUtil.h" />
+    <ClInclude Include="StartScreen.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureGL.h" />
