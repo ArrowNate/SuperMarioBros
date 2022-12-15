@@ -1,6 +1,7 @@
 #ifndef __SCREENMANAGER_H
 #define __SCREENMANAGER_H
 #include "InputManager.h"
+#include "StartScreen.h"
 
 using namespace SDLFramework;
 
@@ -12,6 +13,7 @@ private:
 	Screens mCurrentScreen;
 
 	InputManager* m_pInput;
+	StartScreen* m_pStartScreen;
 
 public:
 	static ScreenManager* Instance();

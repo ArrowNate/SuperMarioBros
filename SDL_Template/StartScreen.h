@@ -19,8 +19,8 @@ public:
 	StartScreen();
 	~StartScreen();
 
-	void Update() override;
-	void Render() override;
+	void Update();
+	void Render();
 };
 
 #endif // !__STARTSCREEN_H

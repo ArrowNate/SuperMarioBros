@@ -5,9 +5,9 @@ StartScreen::StartScreen()
 	m_pTimer = Timer::Instance();
 	m_pInputManager = InputManager::Instance();
 
-	m_pLogo = new TextureGL("SuperMarioBrosLogo.png", 0, 0, 700, 310);
+	m_pLogo = new TextureGL("SuperMarioBrosLogo.jpg", 0, 0, 700, 310);
 	m_pLogo->Parent(this);
-	m_pLogo->Position(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.5f);
+	m_pLogo->Position(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.3f);
 }
 
 StartScreen::~StartScreen()
@@ -18,6 +18,7 @@ StartScreen::~StartScreen()
 
 void StartScreen::Update()
 {
+	m_pLogo->Update();
 }
 
 void StartScreen::Render()
