@@ -8,8 +8,8 @@ namespace SDLFramework {
 
 	class Texture : public GameEntity {
 	protected:
-		SDL_Texture* m_pTex;
-		Graphics* m_pGraphics;
+		SDL_Texture * mTex;
+		Graphics * mGraphics;
 
 		int mWidth;
 		int mHeight;

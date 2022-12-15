@@ -28,7 +28,7 @@ namespace SDLFramework {
 
 		GraphicsGL();
 		~GraphicsGL();
-		TextureGL* m_pTextureGL;
+		TextureGL* textureGL;
 		void DrawSprite(TextureGL& texture, SDL_Rect* srcRect = nullptr, SDL_Rect* dstRect = nullptr, float angle = 0.0f, SDL_RendererFlip flip = SDL_FLIP_NONE);
 
 

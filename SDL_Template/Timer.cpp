@@ -2,9 +2,9 @@
 
 namespace SDLFramework {
 
-	Timer* Timer::sInstance = nullptr;
+	Timer * Timer::sInstance = nullptr;
 
-	Timer* Timer::Instance() {
+	Timer * Timer::Instance() {
 		if (sInstance == nullptr) {
 			sInstance = new Timer();
 		}
