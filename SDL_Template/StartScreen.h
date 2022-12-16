@@ -11,6 +11,11 @@ private:
 	Timer* m_pTimer;
 	InputManager* m_pInputManager;
 
+	TextureGL* m_pRights;
+
+	TextureGL* m_p1Player;
+	TextureGL* m_p2Player;
+
 	TextureGL* m_pTopScore;
 
 	TextureGL* m_pLogo;
