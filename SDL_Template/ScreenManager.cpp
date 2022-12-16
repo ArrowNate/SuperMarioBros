@@ -15,18 +15,42 @@ void ScreenManager::Release() {
 	sInstance = nullptr;
 }
 
-void ScreenManager::Update() {
-
-}
-
-void ScreenManager::Render() { 
-
-}
-
 ScreenManager::ScreenManager() {
-
+	mCurrentScreen = Start;
+	m_pInput = InputManager::Instance();
+	m_pStartScreen = new StartScreen();
 }
 
 ScreenManager::~ScreenManager() {
+	m_pInput = nullptr;
+	m_pStartScreen = nullptr;
+}
 
+
+void ScreenManager::Update() {
+	switch (mCurrentScreen) {
+	case Start:
+		m_pStartScreen->Update();
+		break;
+	case OnePlayer:
+
+		break;
+	case TwoPlayer:
+
+		break;
+	}
+}
+
+void ScreenManager::Render() {
+	switch (mCurrentScreen) {
+	case Start:
+		m_pStartScreen->Render();
+		break;
+	case OnePlayer:
+
+		break;
+	case TwoPlayer:
+
+		break;
+	}
 }
