@@ -44,6 +44,7 @@ namespace SDLFramework {
 
 	void GameManager::LateUpdate() {
 		mPhysicsManager->Update();
+		mInputManager->UpdatePrevInput();
 	}
 
 	void GameManager::Render() {
@@ -67,6 +68,8 @@ namespace SDLFramework {
 
 		mTimer = Timer::Instance();
 
+		mInputManager = InputManager::Instance();
+
 		mScreenManager = ScreenManager::Instance();
 	}
 
@@ -76,6 +79,9 @@ namespace SDLFramework {
 
 		Timer::Release();
 		mTimer = nullptr;
+
+		InputManager::Release();
+		mInputManager = nullptr;
 
 		AssetManager::Release();
 		mAssetManager = nullptr;

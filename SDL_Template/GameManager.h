@@ -18,6 +18,7 @@ namespace SDLFramework {
 		AssetManager * mAssetManager;
 		PhysicsManager * mPhysicsManager;
 		Timer * mTimer;
+		InputManager* mInputManager;
 
 		SDL_Event mEvent;
 

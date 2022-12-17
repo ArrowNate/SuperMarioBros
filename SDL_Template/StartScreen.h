@@ -11,11 +11,11 @@ private:
 	Timer* m_pTimer;
 	InputManager* m_pInputManager;
 
-	//GameEntity* m_pPlayerModes;
+	GameEntity* m_pPlayerModes;
 	TextureGL* m_pMushroomCursor;
-	//Vector2 mCursorStartPos;
-	//Vector2 mCursorOffset;
-	//int mSelectedMode;
+	Vector2 mCursorStartPos;
+	Vector2 mCursorOffset;
+	int mSelectedMode;
 
 	TextureGL* m_pRights;
 
@@ -30,9 +30,9 @@ public:
 	StartScreen();
 	~StartScreen();
 
-	//void ChangeSelectedMode(int change);
+	void ChangeSelectedMode(int change);
 
-	//int SelectedMode();
+	int SelectedMode();
 
 	void Update();
 	void Render();
