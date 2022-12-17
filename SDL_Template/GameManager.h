@@ -19,7 +19,8 @@ namespace SDLFramework {
 		AssetManager * mAssetManager;
 		PhysicsManager * mPhysicsManager;
 		Timer * mTimer;
-		TextureGL* m_ptets;
+		InputManager* mInputManager;
+
 		SDL_Event mEvent;
 
 		ScreenManager * mScreenManager;

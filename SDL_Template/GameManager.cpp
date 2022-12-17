@@ -44,12 +44,12 @@ namespace SDLFramework {
 
 	void GameManager::LateUpdate() {
 		mPhysicsManager->Update();
+		mInputManager->UpdatePrevInput();
 	}
 
 	void GameManager::Render() {
 		mGraphics->ClearBackBuffer();
 		mScreenManager->Render();
-		m_ptets->Render();
 		mGraphics->Render();
 	}
 
@@ -67,11 +67,8 @@ namespace SDLFramework {
 		mPhysicsManager->SetLayerCollisionMask(PhysicsManager::CollisionLayers::HostileProjectiles, PhysicsManager::CollisionFlags::Friendly);
 
 		mTimer = Timer::Instance();
-
+		mInputManager = InputManager::Instance();
 		mScreenManager = ScreenManager::Instance();
-
-		m_ptets = new TextureGL("MARIO", "ARCADE.ttf", 31, { 255, 255, 255 });
-		m_ptets->Position(-21.0f, 15.0f);
 	}
 
 	GameManager::~GameManager() {
@@ -80,6 +77,9 @@ namespace SDLFramework {
 
 		Timer::Release();
 		mTimer = nullptr;
+
+		InputManager::Release();
+		mInputManager = nullptr;
 
 		AssetManager::Release();
 		mAssetManager = nullptr;
