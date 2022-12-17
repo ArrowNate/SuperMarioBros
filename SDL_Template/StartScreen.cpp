@@ -69,9 +69,7 @@ StartScreen::~StartScreen()
 	m_pTopScore = nullptr;
 
 	m_pHUD = nullptr;
-	delete m_pBackgrounfRef;
-	m_pBackgrounfRef = nullptr;
-
+	
 	delete m_pTiles;
 	m_pTiles = nullptr;
 }
@@ -97,7 +95,6 @@ int StartScreen::SelectedMode()
 
 void StartScreen::Update()
 {
-	m_pBackgrounfRef->Update();
 	m_pHUD->Update();
 	m_pTiles->Update();
 
