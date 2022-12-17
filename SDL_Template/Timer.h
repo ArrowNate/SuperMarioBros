@@ -7,7 +7,7 @@ namespace SDLFramework {
 	class Timer
 	{
 	private:
-		static Timer* sInstance;
+		static Timer * sInstance;
 
 		unsigned int mStartTicks;
 		unsigned int mElapsedTicks;
@@ -15,7 +15,7 @@ namespace SDLFramework {
 		float mTimeScale;
 
 	public:
-		static Timer* Instance();
+		static Timer * Instance();
 		static void Release();
 
 		void Reset();

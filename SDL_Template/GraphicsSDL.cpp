@@ -18,24 +18,24 @@ namespace SDLFramework {
 
 	GraphicsSDL::~GraphicsSDL()
 	{
-		SDL_DestroyRenderer(m_pRenderer);
+		SDL_DestroyRenderer(mRenderer);
 
-		m_pRenderer = nullptr;
+		mRenderer = nullptr;
 	}
 
 	void GraphicsSDL::DrawTexture(SDL_Texture* tex, SDL_Rect* srcRect /*= nullptr*/, SDL_Rect* dstRect /*= nullptr*/, float angle /*= 0.0f*/, SDL_RendererFlip flip /*= SDL_FLIP_NONE*/)
 	{
-		SDL_RenderCopyEx(m_pRenderer, tex, srcRect, dstRect, angle, nullptr, flip);
+		SDL_RenderCopyEx(mRenderer, tex, srcRect, dstRect, angle, nullptr, flip);
 	}
 
 	void GraphicsSDL::Render()
 	{
-		SDL_RenderPresent(m_pRenderer);
+		SDL_RenderPresent(mRenderer);
 	}
 
 	void GraphicsSDL::ClearBackBuffer()
 	{
-		SDL_RenderClear(m_pRenderer);
+		SDL_RenderClear(mRenderer);
 	}
 
 	bool GraphicsSDL::Init()

@@ -11,16 +11,16 @@ namespace SDLFramework {
 	class Graphics
 	{
 	public:
-		static const short SCREEN_WIDTH = 1024;
-		static const short SCREEN_HEIGHT = 896;
-		const char* WINDOW_TITLE = "Super Mario Bros";
+		static const short SCREEN_WIDTH = 800;
+		static const short SCREEN_HEIGHT = 600;
+		const char* WINDOW_TITLE = "Mario Bros";
 
 	protected:
 		static Graphics* sInstance;
 		static bool sInitialized;
 
-		SDL_Window* m_pWindow;
-		SDL_Renderer* m_pRenderer;
+		SDL_Window* mWindow;
+		SDL_Renderer* mRenderer;
 
 	public:
 		static Graphics* Instance();

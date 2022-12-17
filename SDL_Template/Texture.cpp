@@ -3,11 +3,11 @@
 namespace SDLFramework {
 
 	Texture::Texture(std::string filename, bool managed) {
-		m_pGraphics = Graphics::Instance();
-		m_pTex = AssetManager::Instance()->GetTexture(filename, managed);
+		mGraphics = Graphics::Instance();
+		mTex = AssetManager::Instance()->GetTexture(filename, managed);
 		//mSurf = AssetManager::Instance()->GetSurfaceTexture(filename, managed);
 
-		SDL_QueryTexture(m_pTex, nullptr, nullptr, &mWidth, &mHeight);
+		SDL_QueryTexture(mTex, nullptr, nullptr, &mWidth, &mHeight);
 
 		mClipped = false;
 		mDestinationRect.w = mWidth;
@@ -15,8 +15,8 @@ namespace SDLFramework {
 	}
 
 	Texture::Texture(std::string filename, int x, int y, int w, int h, bool managed) {
-		m_pGraphics = Graphics::Instance();
-		m_pTex = AssetManager::Instance()->GetTexture(filename, managed);
+		mGraphics = Graphics::Instance();
+		mTex = AssetManager::Instance()->GetTexture(filename, managed);
 		//mSurf = AssetManager::Instance()->GetSurfaceTexture(filename, managed);
 
 		mWidth = w;
@@ -33,22 +33,22 @@ namespace SDLFramework {
 	}
 
 	Texture::Texture(std::string text, std::string fontPath, int size, SDL_Color color, bool managed) {
-		m_pGraphics = Graphics::Instance();
-		m_pTex = AssetManager::Instance()->GetText(text, fontPath, size, color, managed);
+		mGraphics = Graphics::Instance();
+		mTex = AssetManager::Instance()->GetText(text, fontPath, size, color, managed);
 		//mSurf = AssetManager::Instance()->GetSurfaceText(text, fontPath, size, color, managed);
 
 
 		mClipped = false;
 
-		SDL_QueryTexture(m_pTex, nullptr, nullptr, &mWidth, &mHeight);
+		SDL_QueryTexture(mTex, nullptr, nullptr, &mWidth, &mHeight);
 
 		mDestinationRect.w = mWidth;
 		mDestinationRect.h = mHeight;
 	}
 	Texture::~Texture() {
-		AssetManager::Instance()->DestroyTexture(m_pTex);
-		m_pTex = nullptr;
-		m_pGraphics = nullptr;
+		AssetManager::Instance()->DestroyTexture(mTex);
+		mTex = nullptr;
+		mGraphics = nullptr;
 	}
 
 	Vector2 Texture::ScaledDimensions() {
@@ -83,7 +83,7 @@ namespace SDLFramework {
 
 		if (GraphicsGL::Instance() == nullptr)
 		{
-			m_pGraphics->DrawTexture(m_pTex, mClipped ? &mSourceRect : nullptr, &mDestinationRect, Rotation(World));
+			mGraphics->DrawTexture(mTex, mClipped ? &mSourceRect : nullptr, &mDestinationRect, Rotation(World));
 		}
 	}
 }

@@ -2,9 +2,9 @@
 
 namespace SDLFramework {
 
-	InputManager* InputManager::sInstance = nullptr;
+	InputManager * InputManager::sInstance = nullptr;
 
-	InputManager* InputManager::Instance() {
+	InputManager * InputManager::Instance() {
 		if (sInstance == nullptr) {
 			sInstance = new InputManager();
 		}
@@ -17,15 +17,15 @@ namespace SDLFramework {
 	}
 
 	bool InputManager::KeyDown(SDL_Scancode scancode) {
-		return m_pKeyboardState[scancode];
+		return mKeyboardState[scancode];
 	}
 
 	bool InputManager::KeyPressed(SDL_Scancode scancode) {
-		return !m_pPrevKeyboardState[scancode] && m_pKeyboardState[scancode];
+		return !mPrevKeyboardState[scancode] && mKeyboardState[scancode];
 	}
 
 	bool InputManager::KeyReleased(SDL_Scancode scancode) {
-		return m_pPrevKeyboardState[scancode] && !m_pKeyboardState[scancode];
+		return mPrevKeyboardState[scancode] && !mKeyboardState[scancode];
 	}
 
 	bool InputManager::MouseButtonDown(MouseButton button)
@@ -113,18 +113,18 @@ namespace SDLFramework {
 	}
 
 	void InputManager::UpdatePrevInput() {
-		memcpy(m_pPrevKeyboardState, m_pKeyboardState, mKeyLength);
+		memcpy(mPrevKeyboardState, mKeyboardState, mKeyLength);
 		mPrevMouseState = mMouseState;
 	}
 
 	InputManager::InputManager() {
-		m_pKeyboardState = SDL_GetKeyboardState(&mKeyLength);
-		m_pPrevKeyboardState = new Uint8[mKeyLength];
-		memcpy(m_pPrevKeyboardState, m_pKeyboardState, mKeyLength);
+		mKeyboardState = SDL_GetKeyboardState(&mKeyLength);
+		mPrevKeyboardState = new Uint8[mKeyLength];
+		memcpy(mPrevKeyboardState, mKeyboardState, mKeyLength);
 	}
 
 	InputManager::~InputManager() {
-		delete[] m_pPrevKeyboardState;
-		m_pPrevKeyboardState = nullptr;
+		delete[] mPrevKeyboardState;
+		mPrevKeyboardState = nullptr;
 	}
 }

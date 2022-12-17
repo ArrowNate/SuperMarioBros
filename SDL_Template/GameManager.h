@@ -2,7 +2,6 @@
 #define __GAMEMANAGER_H
 #include <SDL.h>
 #include "Timer.h"
-#include "AudioManager.h"
 #include "ScreenManager.h"
 #include "PhysicsManager.h"
 
@@ -15,20 +14,18 @@ namespace SDLFramework {
 		const int FRAME_RATE = 60;
 
 		bool mQuit;
-		Graphics* m_pGraphics;
-		AssetManager* m_pAssetManager;
-		InputManager* m_pInputManager;
-		AudioManager* m_pAudioManager;
-		PhysicsManager* m_pPhysicsManager;
-
-		Timer* m_pTimer;
+		Graphics * mGraphics;
+		AssetManager * mAssetManager;
+		PhysicsManager * mPhysicsManager;
+		Timer * mTimer;
+		InputManager* mInputManager;
 
 		SDL_Event mEvent;
 
-		ScreenManager* m_pScreenManager;
+		ScreenManager * mScreenManager;
 
 	public:
-		static GameManager* Instance();
+		static GameManager * Instance();
 		static void Release();
 
 		void Run();

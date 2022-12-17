@@ -13,7 +13,7 @@ namespace SDLFramework {
 		enum AnimDir { Horizontal = 0, Vertical = 1 };
 
 	protected:
-		Timer* m_pTimer;
+		Timer * mTimer;
 		int mStartX;
 		int mStartY;
 

@@ -7,12 +7,12 @@ namespace SDLFramework {
 
 	class Random {
 	private:
-		static Random* sInstance;
+		static Random * sInstance;
 
 		std::mt19937 mGenerator;
 
 	public:
-		static Random* Instance();
+		static Random * Instance();
 		static void Release();
 
 		unsigned RandomInt(); // [0,unsigned max]

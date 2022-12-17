@@ -12,12 +12,12 @@ uniform float rotate;
 void main()
 {
 
-    mat4 RotationMatrix = mat4(
-        cos(rotate), -sin(rotate), 0.0, 0.0,
-        sin(rotate), cos(rotate), 0.0, 0.0,
-        0.0, 0.0, 1.0, 0.0,
-        0.0, 0.0, 0.0, 1.0
-    );
+    //mat4 RotationMatrix = mat4(
+    //    cos(rotate), -sin(rotate), 0.0, 0.0,
+    //    sin(rotate), cos(rotate), 0.0, 0.0,
+    //    0.0, 0.0, 1.0, 0.0,
+    //    0.0, 0.0, 0.0, 1.0
+    //);
 
 
     float mid = 0.25;
@@ -27,6 +27,8 @@ void main()
     vec4 imageTexture = texture(tSampler, rotated);
     color = imageTexture * fragmentColor;
 
+    /*if (imageTexture.b < 0.1)
+        discard;*/
     color = imageTexture;
 
 }

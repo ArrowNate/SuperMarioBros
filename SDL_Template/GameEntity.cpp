@@ -3,16 +3,16 @@
 namespace SDLFramework {
 
 	GameEntity::GameEntity(float x, float y)
-		: mPosition(x, y), mRotation(0.0f), mScale(Vec2_One), mActive(true), m_pParent(nullptr) {
+		: mPosition(x, y), mRotation(0.0f), mScale(Vec2_One), mActive(true), mParent(nullptr) {
 	}
 
 	SDLFramework::GameEntity::GameEntity(const Vector2 & position)
-		: mPosition(position), mRotation(0.0f), mScale(Vec2_One), mActive(true), m_pParent(nullptr) {
+		: mPosition(position), mRotation(0.0f), mScale(Vec2_One), mActive(true), mParent(nullptr) {
 	}
 
 
 	GameEntity::~GameEntity() {
-		m_pParent = nullptr;
+		mParent = nullptr;
 	}
 
 	void GameEntity::Position(float x, float y) {
@@ -24,13 +24,13 @@ namespace SDLFramework {
 	}
 
 	Vector2 GameEntity::Position(Space space) {
-		if (space == Local || m_pParent == nullptr) {
+		if (space == Local || mParent == nullptr) {
 			return mPosition;
 		}
-		Vector2 parentScale = m_pParent->Scale(World);
-		Vector2 rotPosition = RotateVector(mPosition, m_pParent->Rotation(Local));
+		Vector2 parentScale = mParent->Scale(World);
+		Vector2 rotPosition = RotateVector(mPosition, mParent->Rotation(Local));
 
-		return m_pParent->Position(World) + Vector2(rotPosition.x * parentScale.x, rotPosition.y * parentScale.y);
+		return mParent->Position(World) + Vector2(rotPosition.x * parentScale.x, rotPosition.y * parentScale.y);
 	}
 
 	void GameEntity::Rotation(float rot) {
@@ -46,11 +46,11 @@ namespace SDLFramework {
 	}
 
 	float GameEntity::Rotation(Space space) {
-		if (space == Local || m_pParent == nullptr) {
+		if (space == Local || mParent == nullptr) {
 			return mRotation;
 		}
 
-		return m_pParent->Rotation(World) + mRotation;
+		return mParent->Rotation(World) + mRotation;
 	}
 
 	void GameEntity::Scale(Vector2 scale) {
@@ -58,11 +58,11 @@ namespace SDLFramework {
 	}
 
 	Vector2 GameEntity::Scale(Space space) {
-		if (space == Local || m_pParent == nullptr) {
+		if (space == Local || mParent == nullptr) {
 			return mScale;
 		}
 
-		Vector2 scale = m_pParent->Scale(World);
+		Vector2 scale = mParent->Scale(World);
 		scale.x *= mScale.x;
 		scale.y *= mScale.y;
 
@@ -84,7 +84,7 @@ namespace SDLFramework {
 			mScale = Scale(World);
 		}
 		else {
-			if (m_pParent != nullptr) {
+			if (mParent != nullptr) {
 				Parent(nullptr);
 			}
 			Vector2 parentScale = parent->Scale(World);
@@ -97,12 +97,12 @@ namespace SDLFramework {
 			mScale = Vector2(mScale.x / parentScale.x, mScale.y / parentScale.y);
 		}
 
-		m_pParent = parent;
+		mParent = parent;
 	}
 
 	GameEntity * GameEntity::Parent() const
 	{
-		return m_pParent;
+		return mParent;
 	}
 
 	void GameEntity::Translate(Vector2 vec, Space space) {

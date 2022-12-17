@@ -12,9 +12,9 @@ namespace SDLFramework {
 		enum MouseButton { Left = 0, Right, Middle, Back, Forward };
 
 	private:
-		static InputManager* sInstance;
-		const Uint8* m_pKeyboardState;
-		Uint8* m_pPrevKeyboardState;
+		static InputManager * sInstance;
+		const Uint8 * mKeyboardState;
+		Uint8 * mPrevKeyboardState;
 		int mKeyLength;
 
 		Uint32 mPrevMouseState;
@@ -25,7 +25,7 @@ namespace SDLFramework {
 
 	public:
 
-		static InputManager* Instance();
+		static InputManager * Instance();
 		static void Release();
 
 		bool KeyDown(SDL_Scancode scancode);

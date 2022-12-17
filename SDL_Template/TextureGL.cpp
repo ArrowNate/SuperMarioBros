@@ -4,17 +4,17 @@ namespace SDLFramework {
 
 	void TextureGL::Generate()
 	{
-		GLint nOfColors = m_pSurf->format->BytesPerPixel;
+		GLint nOfColors = mSurf->format->BytesPerPixel;
 		if (nOfColors == 4)     // contains an alpha channel
 		{
-			if (m_pSurf->format->Rmask == 0x000000ff)
+			if (mSurf->format->Rmask == 0x000000ff)
 				mode = GL_RGBA;
 			else
 				mode = GL_BGRA;
 		}
 		else if (nOfColors == 3)     // no alpha channel
 		{
-			if (m_pSurf->format->Rmask == 0x000000ff)
+			if (mSurf->format->Rmask == 0x000000ff)
 				mode = GL_RGB;
 			else
 				mode = GL_BGR;
@@ -35,7 +35,7 @@ namespace SDLFramework {
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 		// load and generate the texture
-		glTexImage2D(GL_TEXTURE_2D, 0, nOfColors, m_pSurf->w, m_pSurf->h, 0, mode, GL_UNSIGNED_BYTE, m_pSurf->pixels);
+		glTexImage2D(GL_TEXTURE_2D, 0, nOfColors, mSurf->w, mSurf->h, 0, mode, GL_UNSIGNED_BYTE, mSurf->pixels);
 		glGenerateMipmap(GL_TEXTURE_2D);
 	}
 
@@ -63,7 +63,7 @@ namespace SDLFramework {
 	{
 		Texture::Render();
 
-		if (m_pSurf != nullptr)
+		if (mSurf != nullptr)
 		{
 			GraphicsGL::Instance()->DrawSprite(*this, mClipped ? &mSourceRect : nullptr, &mDestinationRect, Rotation(World), Flip);
 			return;
@@ -74,8 +74,8 @@ namespace SDLFramework {
 
 	void TextureGL::SetSurfaceTexture(std::string filename, bool managed)
 	{
-		m_pSurf = AssetManager::Instance()->GetSurfaceTexture(filename, managed);
-		if (m_pSurf != nullptr)
+		mSurf = AssetManager::Instance()->GetSurfaceTexture(filename, managed);
+		if (mSurf != nullptr)
 			Generate();
 		else
 			std::cout << "mSurf nullptr Text in TextureGL" << std::endl;
@@ -84,8 +84,8 @@ namespace SDLFramework {
 
 	void TextureGL::SetSurfaceTextTexture(std::string text, std::string fontPath, int size, SDL_Color color, bool managed)
 	{
-		m_pSurf = AssetManager::Instance()->GetSurfaceText(text, fontPath, size, color, managed);
-		if (m_pSurf != nullptr)
+		mSurf = AssetManager::Instance()->GetSurfaceText(text, fontPath, size, color, managed);
+		if (mSurf != nullptr)
 			Generate();
 		else
 			std::cout << "mSurf nullptr Text in TextureGL" << std::endl;
