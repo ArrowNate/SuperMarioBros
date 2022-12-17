@@ -119,7 +119,7 @@ namespace SDLFramework {
 
 		//Enables a double buffer window - removes flickering.
 		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		glClearColor(0.4f, 0.6f, 1.0f, 1.0f);
 		glEnable(GL_TEXTURE_2D);
 
 
