@@ -14,13 +14,14 @@ private:
 	TextureGL* m_pHUDbackground;
 
 	TextureGL* m_pPlayerName;
-	Texture* m_pPlayerScore;
+	TextureGL* m_pPlayerScore;
 
 	AnimatedTexture* m_pCoins;
-	Texture* m_pNumberOfCoins;
-	Texture* m_pWorld;
-	Texture* m_pWorldLevel;
-	Texture* m_pTime;
+	TextureGL* m_pMultiply;
+	TextureGL* m_pNumberOfCoins;
+	TextureGL* m_pWorld;
+	TextureGL* m_pWorldLevel;
+	TextureGL* m_pTime;
 
 public:
 	HUD();

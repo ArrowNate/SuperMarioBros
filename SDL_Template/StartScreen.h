@@ -4,7 +4,6 @@
 #include "AnimatedTexture.h"
 #include "HUD.h"
 
-
 using namespace SDLFramework;
 
 class StartScreen : public GameEntity
@@ -45,6 +44,5 @@ public:
 	void Update();
 	void Render();
 };
-
 
 #endif // ! _STARTSCREEN_H

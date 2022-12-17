@@ -31,7 +31,7 @@ StartScreen::StartScreen()
 	m_pTiles->Parent(this);
 	m_pTiles->Position(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.5f);
 
-	m_pTopScore = new TextureGL("TOP-  000000", "emulogic.ttf", 20, { 255,255,255 });
+	m_pTopScore = new TextureGL("TOP- 000000", "emulogic.ttf", 20, { 255,255,255 });
 	m_pTopScore->Parent(this);
 	m_pTopScore->Position(400.0f, 480.0f);
 
@@ -116,5 +116,4 @@ void StartScreen::Render()
 	m_p1Player->Render();
 	m_p2Player->Render();
 	m_pTopScore->Render();
-
 }
