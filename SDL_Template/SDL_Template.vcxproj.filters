@@ -78,9 +78,6 @@
     <ClCompile Include="Graphics.cpp">
       <Filter>Source Files\Managers</Filter>
     </ClCompile>
-    <ClCompile Include="BezierPath.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="tinyxml2.cpp">
       <Filter>Source Files\TinyXML</Filter>
     </ClCompile>
@@ -164,14 +161,8 @@
     <ClInclude Include="Graphics.h">
       <Filter>Header Files\Managers</Filter>
     </ClInclude>
-    <ClInclude Include="BezierPath.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="tinyxml2.h">
       <Filter>Header Files\TinyXML</Filter>
-    </ClInclude>
-    <ClInclude Include="CaptureBeam.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Collider.h">
       <Filter>Header Files\Physics</Filter>
