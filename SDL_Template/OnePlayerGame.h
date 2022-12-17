@@ -14,6 +14,21 @@ private:
 	InputManager* m_pInputManager;
 
 	OnePlayerGame* m_pOnePlayerGame;
+
+	float mGameStartTimer;
+
+	bool mGameStarted;
+
+public:
+	OnePlayerGame();
+	~OnePlayerGame();
+
+	void StartNewGame();
+
+	bool GameOver();
+
+	void Update() override;
+	void Render() override;
 };
 
 #endif // !_ONEPLAYERGAME_H
