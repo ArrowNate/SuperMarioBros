@@ -8,11 +8,11 @@ HUD::HUD() {
 	m_pHUDbackground->Scale(Vector2(13.0f, 1.0f));
 	m_pHUDbackground->Position(0.5f,0.5f);
 
-	m_pPlayerName = new TextureGL("MARIO", "SuperMario256.ttf", 31, { 255, 255, 255 });
+	m_pPlayerName = new TextureGL("MARIO", "emulogic.ttf", 31, { 255, 255, 255 });
 	m_pPlayerName->Parent(m_pHUDbackground);
 	m_pPlayerName->Position(-21.0f, 15.0f);
 
-	m_pPlayerScore = new TextureGL("000000", "SuperMario256.ttf", 31, { 255, 255, 255 });
+	m_pPlayerScore = new TextureGL("000000", "emulogic.ttf", 31, { 255, 255, 255 });
 	m_pPlayerScore->Parent(m_pHUDbackground);
 	m_pPlayerScore->Position(-21.0f, 40.0f);
 
@@ -20,19 +20,19 @@ HUD::HUD() {
 	m_pCoins->Parent(m_pHUDbackground);
 	m_pCoins->Position(-9.0f, 39.0f);
 
-	m_pNumberOfCoins = new TextureGL("x 00", "SuperMario256.ttf", 27, { 255, 255, 255 });
+	m_pNumberOfCoins = new TextureGL("x 00", "emulogic.ttf", 27, { 255, 255, 255 });
 	m_pNumberOfCoins->Parent(m_pHUDbackground);
 	m_pNumberOfCoins->Position(-5.0f, 39.0f);
 
-	m_pWorld = new TextureGL("WORLD", "SuperMario256.ttf", 31, { 255, 255, 255 });
+	m_pWorld = new TextureGL("WORLD", "emulogic.ttf", 31, { 255, 255, 255 });
 	m_pWorld->Parent(m_pHUDbackground);
 	m_pWorld->Position(8.0f, 15.0f);
 
-	m_pWorldLevel = new TextureGL("1 - 1", "SuperMario256.ttf", 31, { 255, 255, 255 });
+	m_pWorldLevel = new TextureGL("1 - 1", "emulogic.ttf", 31, { 255, 255, 255 });
 	m_pWorldLevel->Parent(m_pHUDbackground);
 	m_pWorldLevel->Position(8.0f, 39.0f);
 
-	m_pTime = new TextureGL("Time", "SuperMario256.ttf", 31, { 255, 255, 255 });
+	m_pTime = new TextureGL("Time", "emulogic.ttf", 31, { 255, 255, 255 });
 	m_pTime->Parent(m_pHUDbackground);
 	m_pTime->Position(21.0f, 15.0f);
 }
