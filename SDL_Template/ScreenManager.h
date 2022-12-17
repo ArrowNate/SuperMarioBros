@@ -1,6 +1,8 @@
 #ifndef __SCREENMANAGER_H
 #define __SCREENMANAGER_H
 #include "StartScreen.h"
+#include "OnePlayerGame.h"
+#include "TwoPlayerGame.h"
 
 class ScreenManager {
 private:
@@ -11,8 +13,8 @@ private:
 	InputManager* m_pInput;
 	StartScreen* m_pStartScreen;
 	ScreenManager* m_pScreenManager;
-	//OnePlayerGame* m_pOnePlayerGame;
-	//TwoPlayerGame* m_pTwoPlayerGame;
+	OnePlayerGame* m_pOnePlayerGame;
+	TwoPlayerGame* m_pTwoPlayerGame;
 
 	int ScreenChoice;
 
