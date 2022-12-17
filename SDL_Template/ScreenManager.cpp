@@ -46,7 +46,7 @@ void ScreenManager::Update() {
 
 
 	case One:
-		//m_pOnePlayerGame->Update();
+		m_pOnePlayerGame->Update();
 		if (m_pInput->KeyPressed(SDL_SCANCODE_ESCAPE)) {
 			mCurrentScreen = Start;
 		}
@@ -67,11 +67,11 @@ void ScreenManager::Render() {
 		break;
 
 	case One:
-		//m_pOnePlayerGame->Render();
+		m_pOnePlayerGame->Render();
 		break;
 
 	case Two:
-		//m_pTwoPlayerGame->Render();
+		m_pTwoPlayerGame->Render();
 		break;
 	}
 }
@@ -81,8 +81,8 @@ ScreenManager::ScreenManager() {
 
 	mCurrentScreen = Start;
 	m_pStartScreen = new StartScreen;
-	//m_pOnePlayerGame = new OnePlayerGame();
-	//m_pTwoPlayerGame = new TwoPlayerGame();
+	m_pOnePlayerGame = new OnePlayerGame();
+	m_pTwoPlayerGame = new TwoPlayerGame();
 	ScreenChoice = 0;
 }
 
@@ -92,9 +92,9 @@ ScreenManager::~ScreenManager() {
 	delete m_pStartScreen;
 	m_pStartScreen = nullptr;
 
-	//delete m_pOnePlayerGame;
-	//m_pOnePlayerGame = nullptr;
+	delete m_pOnePlayerGame;
+	m_pOnePlayerGame = nullptr;
 
-	//delete m_pTwoPlayerGame;
-	//m_pTwoPlayerGame = nullptr;
+	delete m_pTwoPlayerGame;
+	m_pTwoPlayerGame = nullptr;
 }
