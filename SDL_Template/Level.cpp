@@ -7,7 +7,7 @@ void Level::StartLevel()
 
 void Level::HandleBlackScreen()
 {
-
+	
 }
 
 Level::Level(int level, HUD* levelHud, HUD* blackScreenHud)
@@ -44,8 +44,10 @@ Level::LevelStates Level::State()
 
 void Level::Update()
 {
+	m_pBlackScreen->Update();
 }
 
 void Level::Render()
 {
+	m_pBlackScreen->Render();
 }

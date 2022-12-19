@@ -5,8 +5,6 @@
 #include "HUD.h"
 #include "Timer.h"
 #include "AnimatedTexture.h"
-#include "StartScreen.h"
-#include "ScreenManager.h"
 #include "InputManager.h"
 
 using namespace SDLFramework;

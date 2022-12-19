@@ -5,7 +5,6 @@
 #include "OnePlayerGame.h"
 #include "TwoPlayerGame.h"
 
-
 class ScreenManager {
 private:
 	static ScreenManager * sInstance;
