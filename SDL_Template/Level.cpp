@@ -244,8 +244,3 @@ void Level::Render()
 	}
 }
 
-Level::LevelStates Level::State()
-{
-	return mCurrentState;
-
-}
