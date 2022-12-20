@@ -13,7 +13,7 @@ Level::Level() {
 	m_PBlackScreen->Position(0.0f, 0.0f);
 
 
-	m_PTestLevel = new TextureGL("backgropundRef.png");
+	m_PTestLevel = new TextureGL("MainBackground.png");
 	m_PTestLevel->Parent(this);
 	m_PTestLevel->Position(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.5f);
 
