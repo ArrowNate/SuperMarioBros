@@ -13,7 +13,7 @@ Level::Level() {
 	m_PBlackScreen->Position(0.0f, 0.0f);
 
 
-	m_PTestLevel = new TextureGL("backgropundRef.png");
+	m_PTestLevel = new TextureGL("MainBackground.png");
 	m_PTestLevel->Parent(this);
 	m_PTestLevel->Position(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.5f);
 
@@ -38,7 +38,7 @@ Level::Level() {
 	m_pMarioSprite->Position(Graphics::SCREEN_WIDTH * 0.4f, Graphics::SCREEN_HEIGHT * 0.6f);
 
 	mBlackScreenOff = false;
-	mBlackScreenDelay = 10.0f;
+	mBlackScreenDelay = 10000.0f;
 }
 
 Level::Level(std::string filename) {
@@ -177,19 +177,21 @@ void Level::LevelStage() {
 	}
 }
 
+bool Level::BlackScreenOff() {
+	return mBlackScreenOff;
+}
+
 void Level::BlackScreenDelay() {
 	
 	for (int i = 0; i = mBlackScreenDelay; i++) {
-		mBlackScreenDelay += -0.1 * m_pTimer->DeltaTime();
+		mBlackScreenDelay += -1.0 * m_pTimer->DeltaTime();
 		std::cout << mBlackScreenDelay << std::endl;
 		mBlackScreenOff = true;
 	}	
-
-	mBlackScreenOff = false;
 }
 
 void Level::Update(){
-
+	
 	BlackScreenDelay();
 	m_pHUD->Update();
 
@@ -208,15 +210,19 @@ void Level::Render()
 	switch (mCurrentStage) {
 	case StageOne:
 		if (mBlackScreenDelay >= 0) {
-			m_PBlackScreen->Render();
-			m_pLevelWorld->Render();
-			m_pWorldLevelText->Render();
-			m_pMarioLifes->Render();
-			m_pXLifes->Render();
-			m_pMarioSprite->Render();
-			m_pHUD->Render();
+			if (!mBlackScreenOff) {
+				m_PBlackScreen->Render();
+				m_pLevelWorld->Render();
+				m_pWorldLevelText->Render();
+				m_pMarioLifes->Render();
+				m_pXLifes->Render();
+				m_pMarioSprite->Render();
+				m_pHUD->Render();
+				mBlackScreenOff = false;
+			}
+			
 		}
-		if (mBlackScreenDelay <= 1) {
+		if (mBlackScreenDelay <= 0) {
 			m_PTestLevel->Render();
 			m_pHUD->Render();
 		}
