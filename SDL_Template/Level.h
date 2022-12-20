@@ -30,7 +30,7 @@ private:
 	Texture* m_ptile;
 
 	bool mBlackScreenOff;
-	float mBlackScreenDelay;
+	int mBlackScreenDelay;
 	Texture* m_PBlackScreen;
 	Texture* m_PTestLevel;
 	Timer* m_pTimer;
@@ -44,6 +44,8 @@ private:
 public:
 	std::vector<Texture*> GetLevelTextures;
 	Texture* LevelTextures(char);
+
+	bool BlackScreenOff();
 
 	void BlackScreenDelay();
 	void LevelStage();
