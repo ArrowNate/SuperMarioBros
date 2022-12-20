@@ -1,63 +1,39 @@
 #ifndef _LEVEL_H
 #define _LEVEL_H
-#include "OnePlayerGame.h"
-#include "TwoPlayerGame.h"
-#include "HUD.h"
-#include "Timer.h"
-#include "AnimatedTexture.h"
-#include "InputManager.h"
+#include "tinyxml2.h"
+#include <sdl.h>
+#include <vector>
+#include <string>
+#include "TextureGL.h"
 
+using namespace tinyxml2;
 using namespace SDLFramework;
 
-class Level : public GameEntity
-{
-public:
-	enum LevelStates {Running, Finished, GameOver};
-
+class Level : public GameEntity{
 private:
-	Timer* m_pTimer;
-	HUD* m_pLevelHUD;
+	int mWidth;
+	int mHeight;
+	int mOffsetX;
+	int mOffsetY;
+	int mTile;
+	std::string mTileInfo;
+	tinyxml2::XMLDocument mXMLDocument;
 
-	int mLevel;
-	bool mLevelStarted;
-
-	float mBlackScreenTimer;
-
-	TextureGL* m_pBlackScreen;
-	HUD* m_pBlackScreenHUD;
-	float mBlackScreenOn;
-	float mBlackScrenOff;
-
-	TextureGL* m_pLives;
-
-	//Player* m_pPlayer;
-
-	//bool mPlayerHit;
-	//float mRespawnDelay;
-	//float mRespawnTimer;
-
-	//TextureGL* m_pGameOver;
-	//float mGameOverDelay;
-	//float mGameOverTimer;
-	//float mGameOverOnScreen;
-
-	LevelStates mCurrentState;
-
-private:
-	void StartLevel();
-
-	void HandleBlackScreen();
-	//void HandleCollisions();
-	//void HandlePlayerDeath();
+	std::vector<std::vector<char>> mLevelHeight;
+	std::vector<char> mLevel;
+	std::vector<Texture*> m_pLevelTextures;
+	Texture* m_ptile;
 
 public:
-	Level(int level, HUD* levelHud, HUD* blackScreenHud);
+	std::vector<Texture*> GetLevelTextures;
+	Texture* LevelTextures(char);
+
+	void Update();
+	void Render();
+
+	Level();
+	Level(std::string);
 	~Level();
-
-	LevelStates State();
-
-	void Update() override;
-	void Render() override;
 };
-
 #endif // !_LEVEL_H
+
