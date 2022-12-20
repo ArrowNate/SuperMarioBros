@@ -26,8 +26,10 @@ bool OnePlayerGame::GameOver()
 
 void OnePlayerGame::Update()
 {
+
 }
 
 void OnePlayerGame::Render()
 {
+
 }

@@ -1,8 +1,12 @@
 #include "Level.h"
 
-Level::Level() {}
+Level::Level() 
+{
 
-Level::Level(std::string filename) {
+}
+
+Level::Level(std::string filename) 
+{
 	//Reading and loading the data from the xml file
 	std::string fullPath = SDL_GetBasePath();
 	fullPath.append(filename);
@@ -59,7 +63,8 @@ Level::Level(std::string filename) {
 	mTile = 0;
 }
 
-Level::~Level() {
+Level::~Level() 
+{
 	for (auto l : m_pLevelTextures) {
 		delete l;
 		l = nullptr;
@@ -92,7 +97,10 @@ Texture* Level::LevelTextures(char tile) {
 	return m_ptile;
 }
 
-void Level::Update(){}
+void Level::Update()
+{
+
+}
 
 void Level::Render()
 {
@@ -101,4 +109,9 @@ void Level::Render()
 			m_pLevelTextures[i]->Render();
 		}
 	}
+}
+
+Level::LevelStates Level::State()
+{
+	return mCurrentState;
 }

@@ -5,11 +5,15 @@
 #include <vector>
 #include <string>
 #include "TextureGL.h"
+#include "HUD.h"
 
 using namespace tinyxml2;
 using namespace SDLFramework;
 
 class Level : public GameEntity{
+public:
+	enum LevelStates {Running, Finished, GameOver};
+
 private:
 	int mWidth;
 	int mHeight;
@@ -24,12 +28,16 @@ private:
 	std::vector<Texture*> m_pLevelTextures;
 	Texture* m_ptile;
 
+	LevelStates mCurrentState;
+
 public:
 	std::vector<Texture*> GetLevelTextures;
 	Texture* LevelTextures(char);
 
 	void Update();
 	void Render();
+
+	LevelStates State();
 
 	Level();
 	Level(std::string);
