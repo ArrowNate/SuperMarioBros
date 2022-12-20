@@ -3,6 +3,8 @@
 #include "Timer.h"
 #include "TextureGL.h"
 #include "AnimatedTexture.h"
+#include <ctime>
+#include <vector>
 
 using namespace SDLFramework;
 
@@ -11,6 +13,7 @@ class HUD :  public GameEntity
 private:
 
 	Timer* m_pTimer;
+	Texture* m_pTimeText;
 	TextureGL* m_pHUDbackground;
 
 	TextureGL* m_pPlayerName;
@@ -23,9 +26,13 @@ private:
 	TextureGL* m_pWorldLevel;
 	TextureGL* m_pTime;
 
+	int mSetTime;
+
 public:
 	HUD();
 	~HUD();
+
+	void TimeCount(int time);
 
 	void Update() override;
 	void Render() override;

@@ -6,15 +6,21 @@
 #include <string>
 #include "TextureGL.h"
 #include "HUD.h"
+#include "Timer.h"
+
 
 using namespace tinyxml2;
 using namespace SDLFramework;
 
 class Level : public GameEntity{
+
 public:
 	enum LevelStates {Running, Finished, GameOver};
 
 private:
+	enum LevelStage {StageOne, StageTwo};
+	LevelStage mCurrentStage;
+
 	int mWidth;
 	int mHeight;
 	int mOffsetX;
@@ -28,16 +34,28 @@ private:
 	std::vector<Texture*> m_pLevelTextures;
 	Texture* m_ptile;
 
-	LevelStates mCurrentState;
+	bool mBlackScreenOff;
+	float mBlackScreenDelay;
+	Texture* m_PBlackScreen;
+	Texture* m_PTestLevel;
+	Timer* m_pTimer;
+	HUD* m_pHUD;
+	TextureGL* m_pLevelWorld;
+	TextureGL* m_pWorldLevelText;
+	TextureGL* m_pMarioLifes;
+	TextureGL* m_pXLifes;
+	TextureGL* m_pMarioSprite;
 
 public:
 	std::vector<Texture*> GetLevelTextures;
 	Texture* LevelTextures(char);
 
+	LevelStates State();
+
+	void BlackScreenDelay();
+	void LevelStage();
 	void Update();
 	void Render();
-
-	LevelStates State();
 
 	Level();
 	Level(std::string);
