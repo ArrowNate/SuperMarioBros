@@ -20,7 +20,7 @@ HUD::HUD() {
 	m_pCoins->Parent(m_pHUDbackground);
 	m_pCoins->Position(-9.0f, 32.0f);
 
-	m_pMultiply = new TextureGL("Xmultiply.png", 0, 0, 12, 12);
+	m_pMultiply = new TextureGL("Xmultiply.png", 0, 0, 15, 15);
 	m_pMultiply->Parent(m_pHUDbackground);
 	m_pMultiply->Position(-7.5f, 35.0f);
 
@@ -39,6 +39,12 @@ HUD::HUD() {
 	m_pTime = new TextureGL("Time", "emulogic.ttf", 20, { 255, 255, 255 });
 	m_pTime->Parent(m_pHUDbackground);
 	m_pTime->Position(19.0f, 14.0f);
+
+	m_pTimeText = new TextureGL("400", "emulogic.ttf", 20, { 255, 255, 255 });
+	m_pTimeText->Parent(m_pHUDbackground);
+	m_pTimeText->Position(19.0f, 33.0f);
+
+	mSetTime = 400;
 }
 
 HUD::~HUD () {
@@ -69,9 +75,20 @@ HUD::~HUD () {
 
 	delete m_pTime;
 	m_pTime = nullptr;
+
+	delete m_pTimeText;
+	m_pTimeText = nullptr;
+}
+
+void HUD::TimeCount(int time) {
+
+	mSetTime = time;
+	//time += -0.1 * m_pTimer->DeltaTime();
+	std::cout << mSetTime << std::endl;
 }
 
 void HUD::Update() {
+
 	m_pHUDbackground->Update();
 	m_pPlayerName->Update();
 	m_pPlayerScore->Update();
@@ -81,6 +98,7 @@ void HUD::Update() {
 	m_pWorld->Update();
 	m_pWorldLevel->Update();
 	m_pTime->Update();
+	//m_pTimeText->Update();
 }
 
 void HUD::Render() {
@@ -93,4 +111,6 @@ void HUD::Render() {
 	m_pWorld->Render();
 	m_pWorldLevel->Render();
 	m_pTime->Render();
+	//m_pTimeText->Render();
+	
 }
