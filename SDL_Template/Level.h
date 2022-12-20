@@ -46,6 +46,8 @@ private:
 	TextureGL* m_pXLifes;
 	TextureGL* m_pMarioSprite;
 
+	LevelStates mCurrentState;
+
 public:
 	std::vector<Texture*> GetLevelTextures;
 	Texture* LevelTextures(char);
