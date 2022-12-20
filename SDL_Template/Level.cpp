@@ -38,7 +38,7 @@ Level::Level() {
 	m_pMarioSprite->Position(Graphics::SCREEN_WIDTH * 0.4f, Graphics::SCREEN_HEIGHT * 0.6f);
 
 	mBlackScreenOff = false;
-	mBlackScreenDelay = 10000.0f;
+	mBlackScreenDelay = 50000.0f;
 }
 
 Level::Level(std::string filename) {
