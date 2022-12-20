@@ -12,6 +12,7 @@ using namespace tinyxml2;
 using namespace SDLFramework;
 
 class Level : public GameEntity{
+
 private:
 	enum LevelStage {StageOne, StageTwo};
 	LevelStage mCurrentStage;
@@ -40,6 +41,7 @@ private:
 	TextureGL* m_pMarioLifes;
 	TextureGL* m_pXLifes;
 	TextureGL* m_pMarioSprite;
+
 
 public:
 	std::vector<Texture*> GetLevelTextures;
