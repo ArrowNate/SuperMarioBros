@@ -38,7 +38,11 @@ Level::Level() {
 	m_pMarioSprite->Position(Graphics::SCREEN_WIDTH * 0.4f, Graphics::SCREEN_HEIGHT * 0.6f);
 
 	mBlackScreenOff = false;
-	mBlackScreenDelay = 50000.0f;
+	mBlackScreenDelay = 30000.0f;
+
+	m_pPlayer = new Player();
+	m_pPlayer->Parent(this);
+	m_pPlayer->Position(Graphics::SCREEN_WIDTH * 0.4f, Graphics::SCREEN_HEIGHT * 0.6f);
 }
 
 Level::Level(std::string filename) {
@@ -134,6 +138,9 @@ Level::~Level() {
 	delete m_pMarioSprite;
 	m_pMarioSprite = nullptr;
 
+	delete m_pPlayer;
+	m_pPlayer = nullptr;
+
 }
 
 /// <summary>
@@ -194,6 +201,7 @@ void Level::Update(){
 	
 	BlackScreenDelay();
 	m_pHUD->Update();
+	m_pPlayer->Update();
 
 	//std::cout << "Level1-1" << std::endl;
 
@@ -225,6 +233,7 @@ void Level::Render()
 		if (mBlackScreenDelay <= 0) {
 			m_PTestLevel->Render();
 			m_pHUD->Render();
+			m_pPlayer->Render();
 		}
 		break;
 

@@ -3,6 +3,7 @@
 #include "InputManager.h"
 #include "Timer.h"
 #include "StartScreen.h"
+#include "Player.h"
 
 using namespace SDLFramework;
 
