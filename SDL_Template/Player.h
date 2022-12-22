@@ -3,7 +3,7 @@
 #include "AnimatedTexture.h"
 #include "InputManager.h"
 #include "AudioManager.h"
-//#include "Bullet.h"
+//#include "Fire.h"
 #include "Timer.h"
 
 using namespace SDLFramework;
@@ -16,28 +16,38 @@ private:
 	AudioManager* m_pAudio;
 
 	bool mVisible;
-	bool mAnimating;
+	bool misNotMoving;
+	bool mAnimatingRight;
 	bool misMovingRight;
-	//bool misMovingLeft;
+	bool misMovingLeft;
 	bool mWasHit;
 
 	int mScore;
 	int mLives;
 
 	TextureGL* m_pMario;
-	AnimatedTexture* m_pMarioMoving;
+	TextureGL* m_pMarioMoving;
+	//AnimatedTexture* m_pMarioMoving;
 	AnimatedTexture* m_pDeathAnimation;
 
 	float mCurrentSpeed;
+	float mCurrentSpeedLeft;
 	float mMoveSpeed;
+	float mMoveSpeedLeft;
 	float mMaxSpeed;
+	float mMaxSpeedLeft;
 
 public:
 	Player();
 	~Player();
 
+	//bool IsMovingRight();
+	//bool IsMovingLeft();
+
 	void Visible(bool visible);
+	bool IsNotRunning();
 	bool IsAnimating();
+	void Running();
 
 	int Score();
 	int Lives();
@@ -52,10 +62,10 @@ public:
 
 private:
 	void HandleMovementRight();
-	//void HandleMovementLeft();
+	void HandleMovementLeft();
 	void HandleFire();
 	void MarioPhysicsRight();
-	//void MarioPhysicsLeft();
+	void MarioPhysicsLeft();
 };
 
 #endif // !_PLAYER_H
