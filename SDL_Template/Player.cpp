@@ -8,7 +8,10 @@ Player::Player()
 
 	mVisible = false;
 	misNotMoving = false;
+	mIdleRight = false;
+	mIdleLeft = false;
 	mAnimatingRight = false;
+	mAnimatingLeft = false;
 	misMovingRight = false;
 	misMovingLeft = false;
 	mWasHit = false;
@@ -16,17 +19,25 @@ Player::Player()
 	mScore = 0;
 	mLives = 3;
 
-	m_pMario = new TextureGL("MarioIdle_01.png", 0, 0, 33, 41);
-	m_pMario->Parent(this);
-	m_pMario->Position(-169.0f, 181.0f);
+	m_pMarioRight = new TextureGL("MarioIdleRight.png", 0, 0, 33, 41);
+	m_pMarioRight->Parent(this);
+	m_pMarioRight->Position(-169.0f, 181.0f);
+	
+	m_pMarioMovingRight = new AnimatedTexture("MarioRunningRight.png", 0.0f, 0.0f, 40.0f, 41.0f, 3, 0.6f, AnimatedTexture::Horizontal);
+	m_pMarioMovingRight->Parent(m_pMarioRight);
+	m_pMarioMovingRight->Position(Vec2_Zero);
 
-	//m_pMarioMoving = new AnimatedTexture("MarioRunning.png", 0.0f, 0.0f, 41.0f, 41.0f, 3, 1.0f, AnimatedTexture::Horizontal);
+	m_pMarioLeft = new TextureGL("MarioIdleLeft.png", 0, 0, 33, 41);
+	m_pMarioLeft->Parent(this);
+	m_pMarioLeft->Position(-169.0f, 181.0f);
+
+	m_pMarioMovingLeft = new AnimatedTexture("MarioRunningLeft.png", 0.0f, 0.0f, 41.0f, 40.0f, 3, 0.6f, AnimatedTexture::Horizontal);
+	m_pMarioMovingLeft->Parent(m_pMarioLeft);
+	m_pMarioMovingLeft->Position(Vec2_Zero);
+
+	//m_pMarioMoving = new TextureGL("MarioRunning.png", 0.0f, 0.0f, 41.0f, 41.0f);
 	//m_pMarioMoving->Parent(m_pMario);
 	//m_pMarioMoving->Position(Vec2_Zero);
-
-	m_pMarioMoving = new TextureGL("MarioRunning.png", 0.0f, 0.0f, 41.0f, 41.0f);
-	m_pMarioMoving->Parent(m_pMario);
-	m_pMarioMoving->Position(Vec2_Zero);
 
 	mCurrentSpeed = 0.0f;
 	mCurrentSpeedLeft = 0.0f;
@@ -42,11 +53,17 @@ Player::~Player()
 	m_pInput = nullptr;
 	m_pAudio = nullptr;
 
-	delete m_pMario;
-	m_pMario = nullptr;
+	delete m_pMarioRight;
+	m_pMarioRight = nullptr;
 
-	delete m_pMarioMoving;
-	m_pMarioMoving = nullptr;
+	delete m_pMarioMovingRight;
+	m_pMarioMovingRight = nullptr;
+
+	delete m_pMarioLeft;
+	m_pMarioLeft = nullptr;
+
+	delete m_pMarioMovingLeft;
+	m_pMarioMovingLeft = nullptr;
 }
 
 //bool Player::IsMovingRight()
@@ -69,14 +86,44 @@ bool Player::IsNotRunning()
 	return misNotMoving;
 }
 
-bool Player::IsAnimating()
+bool Player::IsIdleRight()
+{
+	return mIdleRight;
+}
+
+bool Player::IsIdleLeft()
+{
+	return mIdleLeft;
+}
+
+bool Player::IsAnimatingRight()
 {
 	return mAnimatingRight;
 }
 
-void Player::Running()
+bool Player::IsAnimatingLeft()
+{
+	return mAnimatingLeft;
+}
+
+void Player::IdleRight()
+{
+	mIdleRight = true;
+}
+
+void Player::IdleLeft()
+{
+	mIdleLeft = true;
+}
+
+void Player::RunningRight()
 {
 	mAnimatingRight = true;
+}
+
+void Player::RunningLeft()
+{
+	mAnimatingLeft = true;
 }
 
 int Player::Score()
@@ -109,7 +156,7 @@ void Player::Update()
 	//m_pMario->Update();
 	//m_pMarioMoving->Update();
 	//IsAnimating();
-	Running();
+	//Running();
 	HandleMovementRight();
 	HandleMovementLeft();
 	HandleFire();
@@ -117,12 +164,18 @@ void Player::Update()
 	MarioPhysicsLeft();
 	//IsMovingRight();
 	//IsMovingLeft();
-	if (mAnimatingRight) {
-		m_pMarioMoving->Update();
-		mAnimatingRight = false;
+
+	if (mAnimatingRight == true && mIdleRight == false) {
+		m_pMarioMovingRight->Update();
 	}
-	else {
-		m_pMario->Update();
+	if (mAnimatingRight == false && mIdleRight == true) {
+		m_pMarioRight->Update();
+	}
+	if (mAnimatingLeft == true && mIdleLeft == false) {
+		m_pMarioMovingLeft->Update();
+	}
+	if (mAnimatingLeft == false && mIdleLeft == true) {
+		m_pMarioLeft->Update();
 	}
 }
 
@@ -131,40 +184,58 @@ void Player::Render()
 	//m_pMario->Render();
 	//IsAnimating();
 	if (!mVisible) {
-		if (mAnimatingRight) {
-			m_pMarioMoving->Render();
+		if (mAnimatingRight == true && mIdleRight == false && mIdleLeft == false && mAnimatingLeft == false) {
+			m_pMarioMovingRight->Render();
 		}
-		else {
-			m_pMario->Render();
+		if (mAnimatingRight == false && mIdleRight == true && mIdleLeft == false && mAnimatingLeft == false) {
+			m_pMarioRight->Render();
+		}
+		if (mAnimatingLeft == true && mIdleRight == false && mIdleLeft == false && mAnimatingRight == false) {
+		m_pMarioMovingLeft->Render();
+		}
+		if (mAnimatingLeft == false && mIdleRight == false && mIdleLeft == true && mAnimatingRight == false) {
+			m_pMarioLeft->Render();
 		}
 	}
 }
 
 void Player::HandleMovementRight()
 {
-	if (m_pInput->KeyDown(SDL_SCANCODE_D) && !misNotMoving) {
-		Running();
+	if (m_pInput->KeyDown(SDL_SCANCODE_D)) {
+		mIdleRight = false;
+		mAnimatingRight = true;
 		misMovingRight = true;
 		misMovingLeft = false;
+		mAnimatingLeft = false;
+		mIdleLeft = false;
 	}
-	if (m_pInput->KeyReleased(SDL_SCANCODE_D) && misNotMoving) {
+	if (m_pInput->KeyReleased(SDL_SCANCODE_D)) {
+		mIdleRight = true;
 		mAnimatingRight = false;
 		misMovingRight = false;
 		misMovingLeft = false;
+		mAnimatingLeft = false;
+		mIdleLeft = false;
 	}
 }
 
 void Player::HandleMovementLeft()
 {
 	if (m_pInput->KeyDown(SDL_SCANCODE_A)) {
+		mIdleLeft = false;
+		mAnimatingLeft = true;
 		misMovingLeft = true;
 		misMovingRight = false;
 		mAnimatingRight = false;
+		mIdleRight = false;
 	}
 	if (m_pInput->KeyReleased(SDL_SCANCODE_A)) {
+		mIdleLeft = true;
+		mAnimatingLeft = false;
 		misMovingLeft = false;
 		misMovingRight = false;
 		mAnimatingRight = false;
+		mIdleRight = false;
 	}
 }
 

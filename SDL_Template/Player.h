@@ -17,7 +17,10 @@ private:
 
 	bool mVisible;
 	bool misNotMoving;
+	bool mIdleRight;
+	bool mIdleLeft;
 	bool mAnimatingRight;
+	bool mAnimatingLeft;
 	bool misMovingRight;
 	bool misMovingLeft;
 	bool mWasHit;
@@ -25,9 +28,11 @@ private:
 	int mScore;
 	int mLives;
 
-	TextureGL* m_pMario;
-	TextureGL* m_pMarioMoving;
-	//AnimatedTexture* m_pMarioMoving;
+	TextureGL* m_pMarioRight;
+	TextureGL* m_pMarioLeft;
+	//TextureGL* m_pMarioMoving;
+	AnimatedTexture* m_pMarioMovingRight;
+	AnimatedTexture* m_pMarioMovingLeft;
 	AnimatedTexture* m_pDeathAnimation;
 
 	float mCurrentSpeed;
@@ -46,8 +51,14 @@ public:
 
 	void Visible(bool visible);
 	bool IsNotRunning();
-	bool IsAnimating();
-	void Running();
+	bool IsIdleRight();
+	bool IsIdleLeft();
+	bool IsAnimatingRight();
+	bool IsAnimatingLeft();
+	void IdleRight();
+	void IdleLeft();
+	void RunningRight();
+	void RunningLeft();
 
 	int Score();
 	int Lives();

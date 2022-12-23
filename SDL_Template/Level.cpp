@@ -33,7 +33,7 @@ Level::Level() {
 	m_pXLifes->Parent(this);
 	m_pXLifes->Position(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.6f);
 
-	m_pMarioSprite = new TextureGL("MarioIdle_01.png", 0, 0, 33, 41);
+	m_pMarioSprite = new TextureGL("MarioIdleRight.png", 0, 0, 33, 41);
 	m_pMarioSprite->Parent(this);
 	m_pMarioSprite->Position(Graphics::SCREEN_WIDTH * 0.4f, Graphics::SCREEN_HEIGHT * 0.6f);
 
