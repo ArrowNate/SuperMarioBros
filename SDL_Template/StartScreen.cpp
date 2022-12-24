@@ -27,9 +27,9 @@ StartScreen::StartScreen()
 	m_pHUD->Parent(this);
 	m_pHUD->Position(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.05f);
 
-	m_pTiles = new TextureGL("MainBackground.png", 0, 0, 800, 600);
-	m_pTiles->Parent(this);
-	m_pTiles->Position(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.5f);
+	m_pMainBackground = new TextureGL("MainBackground.png", 0, 0, 800, 600);
+	m_pMainBackground->Parent(this);
+	m_pMainBackground->Position(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.5f);
 
 	m_pTopScore = new TextureGL("TOP- 000000", "emulogic.ttf", 20, { 255,255,255 });
 	m_pTopScore->Parent(this);
@@ -70,8 +70,8 @@ StartScreen::~StartScreen()
 
 	m_pHUD = nullptr;
 	
-	delete m_pTiles;
-	m_pTiles = nullptr;
+	delete m_pMainBackground;
+	m_pMainBackground = nullptr;
 }
 
 void StartScreen::ChangeSelectedMode(int change)
@@ -96,7 +96,7 @@ int StartScreen::SelectedMode()
 void StartScreen::Update()
 {
 	m_pHUD->Update();
-	m_pTiles->Update();
+	m_pMainBackground->Update();
 
 	if (m_pInputManager->KeyPressed(SDL_SCANCODE_DOWN)) {
 		ChangeSelectedMode(1);
@@ -109,7 +109,7 @@ void StartScreen::Update()
 void StartScreen::Render()
 {
 	m_pHUD->Render();
-	m_pTiles->Render();
+	m_pMainBackground->Render();
 	m_pLogo->Render();
 	m_pRights->Render();
 	m_pMushroomCursor->Render();

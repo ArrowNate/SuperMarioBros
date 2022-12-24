@@ -13,7 +13,7 @@ private:
 	HUD* m_pHUD;
 
 	Texture* m_pBackgrounfRef;
-	Texture* m_pTiles;
+	Texture* m_pMainBackground;
 	Timer* m_pTimer;
 	InputManager* m_pInputManager;
 

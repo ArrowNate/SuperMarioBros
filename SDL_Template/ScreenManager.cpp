@@ -35,7 +35,7 @@ void ScreenManager::Update() {
 		}
 
 		if (m_pInput->KeyPressed(SDL_SCANCODE_RETURN) && ScreenChoice == 0) {
-			m_p1_1Music->PlayMusic("MUS/SP_Level_1_1.wav", -1);
+			//m_p1_1Music->PlayMusic("MUS/SP_Level_1_1.wav", -1);
 			mCurrentScreen = One;
 		}
 
@@ -47,7 +47,8 @@ void ScreenManager::Update() {
 
 
 	case One:
-		m_pLevel1_1->Update();
+		//m_pLevel1_1->Update();
+		m_pBlackScreen->Update();
 		if (m_pInput->KeyPressed(SDL_SCANCODE_ESCAPE)) {
 			Mix_HaltMusic();
 			mCurrentScreen = Start;
@@ -71,7 +72,8 @@ void ScreenManager::Render() {
 
 	case One:
 		//m_pOnePlayerGame->Render();
-		m_pLevel1_1->Render();
+		//m_pLevel1_1->Render();
+		m_pBlackScreen->Render();
 		
 		break;
 
@@ -90,7 +92,8 @@ ScreenManager::ScreenManager() {
 	m_pTwoPlayerGame = new TwoPlayerGame();
 	m_p1_1Music = AudioManager::Instance();
 
-	m_pLevel1_1 = new Level();
+	m_pBlackScreen = new BlackScreen();
+	//m_pLevel1_1 = new Level();
 
 	ScreenChoice = 0;
 }
@@ -99,8 +102,11 @@ ScreenManager::~ScreenManager() {
 	m_pInput = nullptr;
 	m_p1_1Music = nullptr;
 
-	delete m_pLevel1_1;
-	m_pLevel1_1 = nullptr;
+	/*delete m_pLevel1_1;
+	m_pLevel1_1 = nullptr;*/
+
+	delete m_pBlackScreen;
+	m_pBlackScreen = nullptr;
 
 	delete m_pStartScreen;
 	m_pStartScreen = nullptr;

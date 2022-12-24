@@ -1,44 +1,7 @@
 #include "Level.h"
 
 Level::Level() {
-
-	m_pTimer = Timer::Instance();
-	m_pHUD = new HUD();
-	m_pHUD->Parent(this);
-	m_pHUD->Position(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.05f);
-
-	m_PBlackScreen = new TextureGL("Black.png");
-	m_PBlackScreen->Parent(this);
-	m_PBlackScreen->Scale(Vector2(20.0f, 20.0f));
-	m_PBlackScreen->Position(0.0f, 0.0f);
-
-
-	m_PTestLevel = new TextureGL("MainBackground.png");
-	m_PTestLevel->Parent(this);
-	m_PTestLevel->Position(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.5f);
-
-	m_pLevelWorld = new TextureGL("WORLD", "emulogic.ttf", 20, { 255, 255, 255 });
-	m_pLevelWorld->Parent(this);
-	m_pLevelWorld->Position(Graphics::SCREEN_WIDTH * 0.4f, Graphics::SCREEN_HEIGHT * 0.4f);
-
-	m_pWorldLevelText = new TextureGL("1-1", "emulogic.ttf", 20, { 255, 255, 255 });
-	m_pWorldLevelText->Parent(this);
-	m_pWorldLevelText->Position(Graphics::SCREEN_WIDTH * 0.6f, Graphics::SCREEN_HEIGHT * 0.4f);
-
-	m_pMarioLifes = new TextureGL("3", "emulogic.ttf", 20, { 255, 255, 255 });
-	m_pMarioLifes->Parent(this);
-	m_pMarioLifes->Position(Graphics::SCREEN_WIDTH * 0.6f, Graphics::SCREEN_HEIGHT * 0.6f);
-
-	m_pXLifes = new TextureGL("Xmultiply.png", 0, 0, 15, 15);
-	m_pXLifes->Parent(this);
-	m_pXLifes->Position(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.6f);
-
-	m_pMarioSprite = new TextureGL("MarioIdle_01.png", 0, 0, 33, 41);
-	m_pMarioSprite->Parent(this);
-	m_pMarioSprite->Position(Graphics::SCREEN_WIDTH * 0.4f, Graphics::SCREEN_HEIGHT * 0.6f);
-
-	mBlackScreenOff = false;
-	mBlackScreenDelay = 50000.0f;
+	
 }
 
 Level::Level(std::string filename) {
@@ -71,7 +34,7 @@ Level::Level(std::string filename) {
 	}
 
 	int x = 0;
-	int y = 0;
+	int y = 150;
 
 	for (int i = 0; i < mLevelHeight.size(); i++) {
 		for (int j = 0; j < mWidth; j++) {
@@ -85,8 +48,14 @@ Level::Level(std::string filename) {
 	mTile = 0;
 	for (int i = 0; i < m_pLevelTextures.size(); i++) {
 		if (m_pLevelTextures[mTile] != nullptr) {
-			m_pLevelTextures[mTile]->Scale(Vector2(2, 2));
-			m_pLevelTextures[mTile]->Position(x + 16, y);
+			//m_pLevelTextures[mTile]->Scale(Vector2(2, 2));
+			if (m_pLevelTextures[mTile]->GetAnimatedTile()) {
+
+				m_pLevelTextures[mTile]->TilePosition(Vector2(x, y), true);
+			}
+			else {
+				m_pLevelTextures[mTile]->TilePosition(Vector2(x, y));
+			}
 		}
 		x += mOffsetX;
 		mTile++;
@@ -98,42 +67,14 @@ Level::Level(std::string filename) {
 	mTile = 0;
 }
 
-
 Level::~Level() {
 	for (auto l : m_pLevelTextures) {
 		delete l;
 		l = nullptr;
 	}
 
-	m_pTimer = nullptr;
-
 	delete m_ptile;
 	m_ptile = nullptr;
-
-	delete m_pHUD;
-	m_pHUD = nullptr;
-
-	delete m_PBlackScreen;
-	m_PBlackScreen = nullptr;
-
-	delete m_PTestLevel;
-	m_PTestLevel = nullptr;
-
-	delete m_pLevelWorld;
-	m_pLevelWorld = nullptr;
-
-	delete m_pWorldLevelText;
-	m_pWorldLevelText = nullptr;
-
-	delete m_pMarioLifes;
-	m_pMarioLifes = nullptr;
-
-	delete m_pXLifes;
-	m_pXLifes = nullptr;
-
-	delete m_pMarioSprite;
-	m_pMarioSprite = nullptr;
-
 }
 
 /// <summary>
@@ -141,17 +82,150 @@ Level::~Level() {
 /// </summary>
 /// <param name="tile"></param>
 /// <returns>TextureGL*</returns>
-Texture* Level::LevelTextures(char tile) {
+Tiles* Level::LevelTextures(char tile) {
 	//Should change this to return a class of tile
 	switch (tile) {
+	case '1':
+		//GroundBrick
+		m_ptile = new Tiles("SP_LevelAssets_001.png", 0, 0, 32, 32);
+		break;
+
+		//Bricks
+	case '2':
+		m_ptile = new Tiles("SP_LevelAssets_001.png", 32, 0, 32, 32);
+		break;
+
+		//Platforms
+	case '5':
+		m_ptile = new Tiles("SP_LevelAssets_001.png", 128, 0, 32, 32);
+		break;
+		 
+		//QuestionBlock
 	case '6':
-		m_ptile = new TextureGL("LevelTiles.png", 0, 16, 16, 16);
+		m_ptile = new Tiles("SP_LevelAssets_001.png", 160, 0, 32, 32, 2, 0.7f);
 		break;
 
+		//Bush
 	case '7':
-		m_ptile = new TextureGL("LevelTiles.png", 0, 16, 16, 16);
+		m_ptile = new Tiles("SP_LevelAssets_001.png", 0, 32, 32, 32);
 		break;
 
+	case '8':
+		m_ptile = new Tiles("SP_LevelAssets_001.png", 32, 32, 32, 32);
+		break;	
+
+	case '9':
+		m_ptile = new Tiles("SP_LevelAssets_001.png", 64, 32, 32, 32);
+		break;
+
+		//Hill
+	case 'A':
+		m_ptile = new Tiles("SP_LevelAssets_001.png", 224, 64, 32, 32);
+		break;
+
+	case 'B':
+		m_ptile = new Tiles("SP_LevelAssets_001.png", 256, 64, 32, 32);
+		break;
+
+	case 'C':
+		m_ptile = new Tiles("SP_LevelAssets_001.png", 288, 64, 32, 32);
+		break;
+
+	case 'D':
+		m_ptile = new Tiles("SP_LevelAssets_001.png", 256, 128, 32, 32);
+		break;
+
+	case 'E':
+		m_ptile = new Tiles("SP_LevelAssets_001.png", 288, 128, 32, 32);
+		break;
+
+	case 'F':
+		m_ptile = new Tiles("SP_LevelAssets_001.png", 256, 96, 32, 32);
+		break;
+
+		//Pipes
+	case 'G':
+		m_ptile = new Tiles("SP_LevelAssets_001.png", 96, 256, 32, 32);
+		break;
+
+	case 'H':
+		m_ptile = new Tiles("SP_LevelAssets_001.png", 0, 96, 32, 32);
+		break;
+
+	case 'I':
+		m_ptile = new Tiles("SP_LevelAssets_001.png", 32, 96, 32, 32);
+		break;
+
+	case 'J':
+		m_ptile = new Tiles("SP_LevelAssets_001.png", 0, 128, 32, 32);
+		break;
+
+		//Cloud 
+	case 'K':
+		m_ptile = new Tiles("SP_LevelAssets_001.png", 160, 96, 32, 32);
+		break;
+
+	case 'L':
+		m_ptile = new Tiles("SP_LevelAssets_001.png", 192, 96, 32, 32);
+		break;
+
+	case 'M':
+		m_ptile = new Tiles("SP_LevelAssets_001.png", 224, 96, 32, 32);
+		break;
+
+	case 'N':
+		m_ptile = new Tiles("SP_LevelAssets_001.png", 160, 128, 32, 32);
+		break;
+
+	case 'O':
+		m_ptile = new Tiles("SP_LevelAssets_001.png", 192, 128, 32, 32);
+		break;
+
+	case 'P':
+		m_ptile = new Tiles("SP_LevelAssets_001.png", 224, 128, 32, 32);
+		break;
+
+		//Win Bar 
+	case 'Q':
+		m_ptile = new Tiles("SP_LevelAssets_001.png", 96, 32, 32, 32);
+		break;
+
+	case 'R':
+		m_ptile = new Tiles("SP_LevelAssets_001.png", 128, 32, 32, 32);
+		break;
+
+	case 'S':
+		m_ptile = new Tiles("SP_LevelAssets_001.png", 160, 32, 32, 32);
+		break;
+
+	case 'T':
+		m_ptile = new Tiles("SP_LevelAssets_001.png", 192, 32, 32, 32);
+		break;
+
+		//Castle
+	case 'U':
+		m_ptile = new Tiles("SP_LevelAssets_001.png", 0, 64, 32, 32);
+		break;
+
+	case 'V':
+		m_ptile = new Tiles("SP_LevelAssets_001.png", 32, 64, 32, 32);
+		break;
+
+	case 'W':
+		m_ptile = new Tiles("SP_LevelAssets_001.png", 64, 64, 32, 32);
+		break;
+
+	case 'X':
+		m_ptile = new Tiles("SP_LevelAssets_001.png", 128, 64, 32, 32);
+		break;
+
+	case 'Y':
+		m_ptile = new Tiles("SP_LevelAssets_001.png", 160, 64, 32, 32);
+		break;
+
+	case 'Z':
+		m_ptile = new Tiles("SP_LevelAssets_001.png", 192, 64, 32, 32);
+		break;
 	default:
 		m_ptile = nullptr;
 	}
@@ -159,88 +233,21 @@ Texture* Level::LevelTextures(char tile) {
 	return m_ptile;
 }
 
-void Level::LevelStage() {
-	switch (mCurrentStage) {
-	case StageOne:
-	
-		break;
-	case StageTwo:
-		/*m_pLevelWorld = new TextureGL("WORLD", "emulogic.ttf", 20, { 255, 255, 255 });
-		m_pLevelWorld->Parent(this);
-		m_pLevelWorld->Position(7.2f, 14.0f);
+void Level::Update() {
 
-		m_pWorldLevelText = new TextureGL("1-2", "emulogic.ttf", 20, { 255, 255, 255 });
-		m_pWorldLevelText->Parent(this);
-		m_pWorldLevelText->Position(Graphics::SCREEN_WIDTH * 0.4f, Graphics::SCREEN_HEIGHT * 0.4f);*/
-
-		break;
+	for (int i = 0; i < m_pLevelTextures.size(); i++) {
+		if (m_pLevelTextures[i] != nullptr) {
+			m_pLevelTextures[i]->Update();
+		}
 	}
-}
-
-bool Level::BlackScreenOff() {
-	return mBlackScreenOff;
-}
-
-void Level::BlackScreenDelay() {
-	
-	for (int i = 0; i = mBlackScreenDelay; i++) {
-		mBlackScreenDelay += -1.0 * m_pTimer->DeltaTime();
-		std::cout << mBlackScreenDelay << std::endl;
-		mBlackScreenOff = true;
-	}	
-}
-
-void Level::Update(){
-	
-	BlackScreenDelay();
-	m_pHUD->Update();
-
-	//std::cout << "Level1-1" << std::endl;
 
 }
 
 void Level::Render()
 {
-	/*for (int i = 0; i < m_pLevelTextures.size(); i++) {
+	for (int i = 0; i < m_pLevelTextures.size(); i++) {
 		if (m_pLevelTextures[i] != nullptr) {
 			m_pLevelTextures[i]->Render();
 		}
-	}*/
-
-	switch (mCurrentStage) {
-	case StageOne:
-		if (mBlackScreenDelay >= 0) {
-			if (!mBlackScreenOff) {
-				m_PBlackScreen->Render();
-				m_pLevelWorld->Render();
-				m_pWorldLevelText->Render();
-				m_pMarioLifes->Render();
-				m_pXLifes->Render();
-				m_pMarioSprite->Render();
-				m_pHUD->Render();
-				mBlackScreenOff = false;
-			}
-			
-		}
-		if (mBlackScreenDelay <= 0) {
-			m_PTestLevel->Render();
-			m_pHUD->Render();
-		}
-		break;
-
-	case StageTwo:
-		if (mBlackScreenDelay >= 0) {
-			m_PBlackScreen->Render();
-			m_pLevelWorld->Render();
-			m_pWorldLevelText->Render();
-			m_pHUD->Render();
-		}
-		if (mBlackScreenDelay <= 1) {
-			m_PTestLevel->Render();
-			m_pHUD->Render();
-		}
-		break;
-
 	}
 }
-

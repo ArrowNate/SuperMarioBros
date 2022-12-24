@@ -19,6 +19,7 @@ void LevelManager::Release()
 
 void LevelManager::Update()
 {
+    m_pLevels[mCurrentLevel]->Update();
 }
 
 void LevelManager::Render()
@@ -30,7 +31,7 @@ LevelManager::LevelManager()
 {
     mCurrentLevel = 0;
     mCurrentWorld = 0;
-    m_pLevels.push_back(new Level("/Assets/level.xml"));
+    m_pLevels.push_back(new Level("/Assets/Mario_Level_1_1.xml"));
 }
 
 LevelManager::~LevelManager()
