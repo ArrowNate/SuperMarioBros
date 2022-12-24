@@ -8,7 +8,7 @@ Player::Player()
 
 	mVisible = false;
 	misNotMoving = false;
-	mIdleRight = false;
+	mIdleRight = true;
 	mIdleLeft = false;
 	mAnimatingRight = false;
 	mAnimatingLeft = false;
@@ -29,7 +29,8 @@ Player::Player()
 
 	m_pMarioLeft = new TextureGL("MarioIdleLeft.png", 0, 0, 33, 41);
 	m_pMarioLeft->Parent(this);
-	m_pMarioLeft->Position(-169.0f, 181.0f);
+	Vector2 pos = m_pMarioRight->Position();
+	m_pMarioLeft->Position(pos);
 
 	m_pMarioMovingLeft = new AnimatedTexture("MarioRunningLeft.png", 0.0f, 0.0f, 41.0f, 40.0f, 3, 0.6f, AnimatedTexture::Horizontal);
 	m_pMarioMovingLeft->Parent(m_pMarioLeft);
@@ -45,6 +46,9 @@ Player::Player()
 	mMoveSpeedLeft = 0.0f;
 	mMaxSpeed = 100.0f;
 	mMaxSpeedLeft = -100.0f;
+
+	mMoveBounds = Vector2(172.2f, 550.0f);
+	//mMoveBoundsLeft = Vector2(0.0f, 550.0f);
 }
 
 Player::~Player()
@@ -181,14 +185,14 @@ void Player::Update()
 
 void Player::Render()
 {
-	//m_pMario->Render();
+	//m_pMarioRight->Render();
 	//IsAnimating();
 	if (!mVisible) {
-		if (mAnimatingRight == true && mIdleRight == false && mIdleLeft == false && mAnimatingLeft == false) {
-			m_pMarioMovingRight->Render();
-		}
 		if (mAnimatingRight == false && mIdleRight == true && mIdleLeft == false && mAnimatingLeft == false) {
 			m_pMarioRight->Render();
+		}
+		if (mAnimatingRight == true && mIdleRight == false && mIdleLeft == false && mAnimatingLeft == false) {
+			m_pMarioMovingRight->Render();
 		}
 		if (mAnimatingLeft == true && mIdleRight == false && mIdleLeft == false && mAnimatingRight == false) {
 		m_pMarioMovingLeft->Render();
@@ -217,6 +221,13 @@ void Player::HandleMovementRight()
 		mAnimatingLeft = false;
 		mIdleLeft = false;
 	}
+
+	Vector2 pos = Position(Local);
+	if (pos.x > mMoveBounds.y - m_pMarioMovingRight->ScaledDimensions().x * 0.5f) {
+		pos.x = mMoveBounds.y - m_pMarioMovingRight->ScaledDimensions().x * 0.5f;
+	}
+
+	Position(pos);
 }
 
 void Player::HandleMovementLeft()
@@ -237,6 +248,14 @@ void Player::HandleMovementLeft()
 		mAnimatingRight = false;
 		mIdleRight = false;
 	}
+
+	Vector2 pos = Position(Local);
+	std::cout << pos.x << std::endl;
+	if (pos.x < mMoveBounds.x + m_pMarioMovingLeft->ScaledDimensions().x * 0.5f) {
+		pos.x = mMoveBounds.x + m_pMarioMovingLeft->ScaledDimensions().x * 0.5f;
+	}
+
+	Position(pos);
 }
 
 void Player::HandleFire()

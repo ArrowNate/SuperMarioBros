@@ -42,6 +42,8 @@ private:
 	float mMaxSpeed;
 	float mMaxSpeedLeft;
 
+	Vector2 mMoveBounds;
+
 public:
 	Player();
 	~Player();
