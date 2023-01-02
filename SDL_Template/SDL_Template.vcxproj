@@ -182,6 +182,7 @@ xcopy "$(ProjectDir)..\Data\*" "$(OutDir)Data\" /y /s</Command>
     <ClCompile Include="ShaderUtil.cpp" />
     <ClCompile Include="StartScreen.cpp" />
     <ClCompile Include="supermario.cpp" />
+    <ClCompile Include="SuperMarioCoins.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureGL.cpp" />
     <ClCompile Include="TextureSDL.cpp" />
@@ -217,6 +218,7 @@ xcopy "$(ProjectDir)..\Data\*" "$(OutDir)Data\" /y /s</Command>
     <ClInclude Include="StartScreen.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="supermario.h" />
+    <ClInclude Include="SuperMarioCoins.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureGL.h" />
     <ClInclude Include="TextureSDL.h" />
