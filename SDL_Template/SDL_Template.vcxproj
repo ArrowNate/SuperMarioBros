@@ -192,6 +192,7 @@ xcopy "$(ProjectDir)..\Data\*" "$(OutDir)Data\" /y /s</Command>
   <ItemGroup>
     <ClInclude Include="AnimatedTexture.h" />
     <ClInclude Include="AssetManager.h" />
+    <ClInclude Include="AudioAssetManager.h" />
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="BoxCollider.h" />
     <ClInclude Include="CircleCollider.h" />

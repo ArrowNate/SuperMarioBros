@@ -248,6 +248,9 @@
     <ClInclude Include="supermario.h">
       <Filter>Header Files\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="AudioAssetManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="fs.shader">

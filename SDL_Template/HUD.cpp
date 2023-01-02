@@ -91,7 +91,7 @@ void HUD::Countdown() {
 		mSetTime -= (1.0f * m_pTimer->DeltaTime());
 	std::stringstream timeString;
 	timeString << static_cast<int>(mSetTime);
-	m_pTimeText->Text(timeString.str());
+	//m_pTimeText->Text(timeString.str());
 }
 
 void HUD::Update() {
@@ -105,7 +105,7 @@ void HUD::Update() {
 	m_pWorld->Update();
 	m_pWorldLevel->Update();
 	m_pTime->Update();
-	//m_pTimeText->Update();
+	m_pTimeText->Update();
 }
 
 void HUD::Render() {
