@@ -34,6 +34,8 @@ public:
 
 	void TimeCount(int time);
 
+	void Countdown();
+
 	void Update() override;
 	void Render() override;
 

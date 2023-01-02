@@ -2,7 +2,8 @@
 #define ENEMY_H
 
 #include <SDL.h>
-#include <GL/gl.h>
+#include <windows.h>
+#include <GL/GL.h>
 #include <string>
 
 class Enemy

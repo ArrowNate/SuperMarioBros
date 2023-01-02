@@ -86,6 +86,13 @@ void HUD::TimeCount(int time) {
 	//time += -0.1 * m_pTimer->DeltaTime();
 	std::cout << mSetTime << std::endl;
 }
+void HUD::Countdown() {
+	if (mSetTime > 400)
+		mSetTime -= (1.0f * m_pTimer->DeltaTime());
+	std::stringstream timeString;
+	timeString << static_cast<int>(mSetTime);
+	m_pTimeText->Text(timeString.str());
+}
 
 void HUD::Update() {
 

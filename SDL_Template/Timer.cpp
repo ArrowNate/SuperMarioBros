@@ -47,4 +47,7 @@ namespace SDLFramework {
 		mElapsedTicks = SDL_GetTicks() - mStartTicks;
 		mDeltaTime = mElapsedTicks * 0.001f;
 	}
+
+
+
 }
