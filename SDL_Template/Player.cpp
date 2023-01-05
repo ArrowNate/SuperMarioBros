@@ -15,6 +15,7 @@ Player::Player()
 	misMovingRight = false;
 	misMovingLeft = false;
 	mWasHit = false;
+	mDeathAnimation = false;
 
 	mScore = 0;
 	mLives = 3;
@@ -36,6 +37,10 @@ Player::Player()
 	m_pMarioMovingLeft->Parent(m_pMarioLeft);
 	m_pMarioMovingLeft->Position(Vec2_Zero);
 
+	m_pDeathAnimation = new Texture("MarioDeath.png", 0, 0, 30, 28);
+	m_pDeathAnimation->Parent(this);
+	m_pDeathAnimation->Position(pos);
+
 	//m_pMarioMoving = new TextureGL("MarioRunning.png", 0.0f, 0.0f, 41.0f, 41.0f);
 	//m_pMarioMoving->Parent(m_pMario);
 	//m_pMarioMoving->Position(Vec2_Zero);
@@ -46,6 +51,9 @@ Player::Player()
 	mMoveSpeedLeft = 0.0f;
 	mMaxSpeed = 300.0f;
 	mMaxSpeedLeft = -300.0f;
+
+	mDeathSpeedUp = 100.0f;
+	mDeathSpeedDown = -500.0f;
 
 	mMoveBounds = Vector2(172.2f, 550.0f);
 	//mMoveBoundsLeft = Vector2(0.0f, 550.0f);
@@ -314,4 +322,24 @@ void Player::MarioPhysicsLeft()
 			mMoveSpeedLeft = 0.0f;
 		}
 	}
+}
+
+void Player::MarioDeath()
+{
+	if (m_pInput->KeyPressed(SDL_SCANCODE_X)) {
+		mDeathAnimation = true;
+		mIdleRight = false;
+		mAnimatingRight = false;
+		misMovingRight = false;
+		misMovingLeft = false;
+		mAnimatingLeft = false;
+		mIdleLeft = false;
+	}
+}
+
+void Player::MarioDeathAnimation()
+{
+	Translate(Vec2_Up * (mDeathSpeedUp + mMoveSpeed) * m_pTimer->DeltaTime() * (std::cos(Rotation()), std::sin(Rotation()), World));
+
+
 }

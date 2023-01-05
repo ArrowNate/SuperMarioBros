@@ -24,6 +24,7 @@ private:
 	bool misMovingRight;
 	bool misMovingLeft;
 	bool mWasHit;
+	bool mDeathAnimation;
 
 	int mScore;
 	int mLives;
@@ -33,7 +34,7 @@ private:
 	//TextureGL* m_pMarioMoving;
 	AnimatedTexture* m_pMarioMovingRight;
 	AnimatedTexture* m_pMarioMovingLeft;
-	AnimatedTexture* m_pDeathAnimation;
+	Texture* m_pDeathAnimation;
 
 	float mCurrentSpeed;
 	float mCurrentSpeedLeft;
@@ -41,6 +42,9 @@ private:
 	float mMoveSpeedLeft;
 	float mMaxSpeed;
 	float mMaxSpeedLeft;
+
+	float mDeathSpeedUp;
+	float mDeathSpeedDown;
 
 	Vector2 mMoveBounds;
 
@@ -79,6 +83,8 @@ private:
 	void HandleFire();
 	void MarioPhysicsRight();
 	void MarioPhysicsLeft();
+	void MarioDeath();
+	void MarioDeathAnimation();
 };
 
 #endif // !_PLAYER_H
