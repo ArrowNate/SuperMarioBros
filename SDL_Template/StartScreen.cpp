@@ -26,14 +26,20 @@ StartScreen::StartScreen()
 	m_pHUD = new HUD();
 	m_pHUD->Parent(this);
 	m_pHUD->Position(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.05f);
+	
 
 	m_pMainBackground = new TextureGL("MainBackground.png", 0, 0, 800, 600);
 	m_pMainBackground->Parent(this);
 	m_pMainBackground->Position(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.5f);
 
-	m_pTopScore = new TextureGL("TOP- 000000", "emulogic.ttf", 20, { 255,255,255 });
+	m_pTopScore = new TextureGL("TOP-       ", "emulogic.ttf", 20, { 255,255,255 });
 	m_pTopScore->Parent(this);
 	m_pTopScore->Position(400.0f, 480.0f);
+
+	m_pTopScoreNumber = new ScoreBoard;
+	m_pTopScoreNumber->Parent(this);
+	m_pTopScoreNumber->Position(490.0f, 480.0f);
+	m_pTopScoreNumber->Score(999999);
 
 	m_pPlayerModes->Parent(this);
 	m_p1Player->Parent(m_pPlayerModes);
@@ -67,6 +73,9 @@ StartScreen::~StartScreen()
 
 	delete m_pTopScore;
 	m_pTopScore = nullptr;
+
+	delete m_pTopScoreNumber;
+	m_pTopScoreNumber = nullptr;
 
 	m_pHUD = nullptr;
 	
@@ -108,6 +117,7 @@ void StartScreen::Update()
 
 void StartScreen::Render()
 {
+
 	m_pHUD->Render();
 	m_pMainBackground->Render();
 	m_pLogo->Render();
@@ -116,4 +126,6 @@ void StartScreen::Render()
 	m_p1Player->Render();
 	m_p2Player->Render();
 	m_pTopScore->Render();
+	m_pTopScoreNumber->Render();
+	
 }
