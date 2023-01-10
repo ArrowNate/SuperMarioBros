@@ -49,11 +49,10 @@ Player::Player()
 	mCurrentSpeedLeft = 0.0f;
 	mMoveSpeed = 0.0f;
 	mMoveSpeedLeft = 0.0f;
-	mMaxSpeed = 300.0f;
-	mMaxSpeedLeft = -300.0f;
+	mMaxSpeed = 400.0f;
+	mMaxSpeedLeft = -400.0f;
 
-	mDeathSpeedUp = 100.0f;
-	mDeathSpeedDown = -500.0f;
+	mDeathAnimationDone = false;
 
 	mMoveBounds = Vector2(172.2f, 550.0f);
 	//mMoveBoundsLeft = Vector2(0.0f, 550.0f);
@@ -274,14 +273,14 @@ void Player::MarioPhysicsRight()
 {
 	Translate(Vec2_Right * (mCurrentSpeed + mMoveSpeed) * m_pTimer->DeltaTime() * (std::cos(Rotation()), std::sin(Rotation()), World));
 	if (misMovingRight == true) {
-		mCurrentSpeed += 100.0f * m_pTimer->DeltaTime();
+		mCurrentSpeed += 200.0f * m_pTimer->DeltaTime();
 		if (mCurrentSpeed > mMaxSpeed) {
 			mCurrentSpeed = mMaxSpeed;
 		}
 	}
 
 	if (misMovingRight == false) {
-		mCurrentSpeed -= 150.0f * m_pTimer->DeltaTime();
+		mCurrentSpeed -= 350.0f * m_pTimer->DeltaTime();
 		if (mCurrentSpeed < 0.0f) {
 			mCurrentSpeed = 0.0f;
 			mMoveSpeed = 0.0f;
@@ -309,14 +308,14 @@ void Player::MarioPhysicsLeft()
 {
 	Translate(Vec2_Right * (mCurrentSpeedLeft - mMoveSpeedLeft) * m_pTimer->DeltaTime() * (std::cos(Rotation()), std::sin(Rotation()), World));
 	if (misMovingLeft == true) {
-		mCurrentSpeedLeft -= 100.0f * m_pTimer->DeltaTime();
+		mCurrentSpeedLeft -= 200.0f * m_pTimer->DeltaTime();
 		if (mCurrentSpeedLeft < mMaxSpeedLeft) {
 			mCurrentSpeedLeft = mMaxSpeedLeft;
 		}
 	}
 
 	if (misMovingLeft == false) {
-		mCurrentSpeedLeft += 150.0f * m_pTimer->DeltaTime();
+		mCurrentSpeedLeft += 350.0f * m_pTimer->DeltaTime();
 		if (mCurrentSpeedLeft > 0.0f) {
 			mCurrentSpeedLeft = 0.0f;
 			mMoveSpeedLeft = 0.0f;
@@ -334,12 +333,13 @@ void Player::MarioDeath()
 		misMovingLeft = false;
 		mAnimatingLeft = false;
 		mIdleLeft = false;
+
+		mDeathAnimationStart = Position();
 	}
 }
 
 void Player::MarioDeathAnimation()
 {
-	Translate(Vec2_Up * (mDeathSpeedUp + mMoveSpeed) * m_pTimer->DeltaTime() * (std::cos(Rotation()), std::sin(Rotation()), World));
-
+	Lerp(mDeathAnimationStart, Vector2(Position().x, )
 
 }

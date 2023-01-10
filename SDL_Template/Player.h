@@ -43,8 +43,11 @@ private:
 	float mMaxSpeed;
 	float mMaxSpeedLeft;
 
-	float mDeathSpeedUp;
-	float mDeathSpeedDown;
+	Vector2 mDeathAnimationStart;
+	Vector2 mDeathAnimationEnd;
+	float mDeathAnimationTotalTime;
+	float mDeathAnimationTimer;
+	bool mDeathAnimationDone;
 
 	Vector2 mMoveBounds;
 
