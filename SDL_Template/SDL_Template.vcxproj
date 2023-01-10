@@ -162,7 +162,6 @@ xcopy "$(ProjectDir)..\Data\*" "$(OutDir)Data\" /y /s</Command>
     <ClCompile Include="BoxCollider.cpp" />
     <ClCompile Include="CircleCollider.cpp" />
     <ClCompile Include="Collider.cpp" />
-    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GameEntity.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Graphics.cpp" />
@@ -182,6 +181,7 @@ xcopy "$(ProjectDir)..\Data\*" "$(OutDir)Data\" /y /s</Command>
     <ClCompile Include="ShaderUtil.cpp" />
     <ClCompile Include="StartScreen.cpp" />
     <ClCompile Include="supermario.cpp" />
+    <ClCompile Include="SuperMarioBrosEnemies.cpp" />
     <ClCompile Include="SuperMarioCoins.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureGL.cpp" />
@@ -198,7 +198,6 @@ xcopy "$(ProjectDir)..\Data\*" "$(OutDir)Data\" /y /s</Command>
     <ClInclude Include="BoxCollider.h" />
     <ClInclude Include="CircleCollider.h" />
     <ClInclude Include="Collider.h" />
-    <ClInclude Include="Enemy.h" />
     <ClInclude Include="GameEntity.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="Graphics.h" />
@@ -218,6 +217,7 @@ xcopy "$(ProjectDir)..\Data\*" "$(OutDir)Data\" /y /s</Command>
     <ClInclude Include="StartScreen.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="supermario.h" />
+    <ClInclude Include="SuperMarioBrosEnemies.h" />
     <ClInclude Include="SuperMarioCoins.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureGL.h" />
