@@ -7,6 +7,7 @@
 #include "TextureGL.h"
 #include "HUD.h"
 #include "Timer.h"
+#include "Player.h"
 
 using namespace tinyxml2;
 using namespace SDLFramework;
@@ -41,6 +42,8 @@ private:
 	TextureGL* m_pMarioLifes;
 	TextureGL* m_pXLifes;
 	TextureGL* m_pMarioSprite;
+
+	Player* m_pPlayer;
 
 
 public:
