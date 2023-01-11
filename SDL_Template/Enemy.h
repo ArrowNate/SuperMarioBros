@@ -4,9 +4,13 @@
 #include "TextureGL.h"
 #include "AnimatedTexture.h"
 using namespace SDLFramework;
+using namespace std;
 
 class Goomba;
 class Koopa;
+
+TextureGL* m_pGoomba;
+TextureGL* m_pKoopa;
 
 class Enemy {
 public:
