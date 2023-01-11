@@ -42,7 +42,7 @@ private:
 	TextureGL* m_pMarioLifes;
 	TextureGL* m_pXLifes;
 	TextureGL* m_pMarioSprite;
-
+	TextureGL* m_pGoomba;
 	Player* m_pPlayer;
 
 
