@@ -37,6 +37,8 @@ public:
 	HUD();
 	~HUD();
 
+	int TimeRemaining();
+	//void SubTime();
 	void SetGameTime(int time);
 	void SetPlayerScore(int score);
 	

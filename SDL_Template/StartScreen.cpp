@@ -23,11 +23,6 @@ StartScreen::StartScreen()
 	m_p2Player = new TextureGL("2 Player Game", "emulogic.ttf", 20, { 255,255,255 });
 	m_pMushroomCursor = new TextureGL("MushroomCursor.png", 0, 0, 40, 40);
 
-	m_pHUD = new HUD();
-	m_pHUD->Parent(this);
-	m_pHUD->Position(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.05f);
-	
-
 	m_pMainBackground = new TextureGL("MainBackground.png", 0, 0, 800, 600);
 	m_pMainBackground->Parent(this);
 	m_pMainBackground->Position(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.5f);

@@ -46,11 +46,11 @@ HUD::HUD() {
 	m_pTimeText->Position(19.0f, 33.0f);
 
 	m_pCountdownTimer = new CountdownTimer();
-	m_pCountdownTimer->Time(444);
+	m_pCountdownTimer->Time(400);
 	m_pCountdownTimer->Parent(m_pHUDbackground);
 	m_pCountdownTimer->Position(20.0f, 33.0f);
 
-	//mSetTime = 400;
+	mSetTime = 400;
 }
 
 HUD::~HUD () {
@@ -90,20 +90,23 @@ HUD::~HUD () {
 
 }
 
-void HUD::SetGameTime(int time) {
-
-	//mSetTime = time;
-	//time += -0.1 * m_pTimer->DeltaTime();
-	//std::cout << mSetTime << std::endl;
-
-	for (int i = 0; i != 0; i--) {
-		m_pCountdownTimer->Time(time);
-		std::cout << m_pCountdownTimer << std::endl;
-	}
-
-	//m_pCountdownTimer->Time(time);
-
-}
+//int HUD::TimeRemaining()
+//{
+//	return mSetTime;
+//}
+//
+////void HUD::SubTime()
+////{
+////}
+//
+//void HUD::SetGameTime(int time) {
+//
+//	//mSetTime -= time;
+//	mSetTime = time;
+//	time += -0.1 * m_pTimer->DeltaTime();
+//	std::cout << mSetTime << std::endl;
+//	
+//}
 
 void HUD::SetPlayerScore(int score) {
 	m_pMarioScore->Score(score);
@@ -111,6 +114,7 @@ void HUD::SetPlayerScore(int score) {
 
 void HUD::Update() {
 
+	
 	m_pHUDbackground->Update();
 	m_pPlayerName->Update();
 	m_pMarioScore->Update();
@@ -127,6 +131,7 @@ void HUD::Update() {
 
 void HUD::Render() {
 	//m_pHUDbackground->Render();
+	
 	m_pPlayerName->Render();
 	m_pMarioScore->Render();
 	m_pCoins->Render();
@@ -139,4 +144,4 @@ void HUD::Render() {
 
 	//m_pTimeText->Render();
 	
-}
+	
