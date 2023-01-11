@@ -24,7 +24,7 @@ private:
 	bool misMovingRight;
 	bool misMovingLeft;
 	bool mWasHit;
-	bool mDeathAnimation;
+	//bool mDeathAnimation;
 
 	int mScore;
 	int mLives;
@@ -42,6 +42,13 @@ private:
 	float mMoveSpeedLeft;
 	float mMaxSpeed;
 	float mMaxSpeedLeft;
+
+	float mDeathAnimationUp;
+	float mDeathAnimationDown;
+	float mDeathAnimationUpMax;
+	float mDeathAnimationDownMax;
+	bool mDeathAnimationHeight;
+	bool mDeathAnimation;
 
 	Vector2 mDeathAnimationStart;
 	Vector2 mDeathAnimationEnd;

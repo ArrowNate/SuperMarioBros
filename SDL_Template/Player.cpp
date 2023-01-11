@@ -15,7 +15,7 @@ Player::Player()
 	misMovingRight = false;
 	misMovingLeft = false;
 	mWasHit = false;
-	mDeathAnimation = false;
+	//mDeathAnimation = false;
 
 	mScore = 0;
 	mLives = 3;
@@ -52,7 +52,13 @@ Player::Player()
 	mMaxSpeed = 400.0f;
 	mMaxSpeedLeft = -400.0f;
 
-	mDeathAnimationDone = false;
+	mDeathAnimationUp = 30.0f;
+	mDeathAnimationUpMax = 60.0f;
+	mDeathAnimationDown = -500.0f;
+	mDeathAnimationDownMax = -1000.0f;
+	mDeathAnimation = false;
+
+	mDeathAnimationDone = true;
 
 	mMoveBounds = Vector2(172.2f, 550.0f);
 	//mMoveBoundsLeft = Vector2(0.0f, 550.0f);
@@ -173,6 +179,8 @@ void Player::Update()
 	HandleFire();
 	MarioPhysicsRight();
 	MarioPhysicsLeft();
+	MarioDeath();
+	MarioDeathAnimation();
 	//IsMovingRight();
 	//IsMovingLeft();
 
@@ -195,17 +203,20 @@ void Player::Render()
 	//m_pMarioRight->Render();
 	//IsAnimating();
 	if (!mVisible) {
-		if (mAnimatingRight == false && mIdleRight == true && mIdleLeft == false && mAnimatingLeft == false) {
+		if (mAnimatingRight == false && mIdleRight == true && mIdleLeft == false && mAnimatingLeft == false && mDeathAnimation == false) {
 			m_pMarioRight->Render();
 		}
-		if (mAnimatingRight == true && mIdleRight == false && mIdleLeft == false && mAnimatingLeft == false) {
+		if (mAnimatingRight == true && mIdleRight == false && mIdleLeft == false && mAnimatingLeft == false && mDeathAnimation == false) {
 			m_pMarioMovingRight->Render();
 		}
-		if (mAnimatingLeft == true && mIdleRight == false && mIdleLeft == false && mAnimatingRight == false) {
-		m_pMarioMovingLeft->Render();
+		if (mAnimatingLeft == true && mIdleRight == false && mIdleLeft == false && mAnimatingRight == false && mDeathAnimation == false) {
+			m_pMarioMovingLeft->Render();
 		}
-		if (mAnimatingLeft == false && mIdleRight == false && mIdleLeft == true && mAnimatingRight == false) {
+		if (mAnimatingLeft == false && mIdleRight == false && mIdleLeft == true && mAnimatingRight == false && mDeathAnimation == false) {
 			m_pMarioLeft->Render();
+		}
+		if (mDeathAnimation == true && mAnimatingRight == false && mAnimatingLeft == false && mIdleRight == false && mIdleLeft == false) {
+			m_pDeathAnimation->Render();
 		}
 	}
 }
@@ -334,12 +345,18 @@ void Player::MarioDeath()
 		mAnimatingLeft = false;
 		mIdleLeft = false;
 
+		std::cout << "Death" << std::endl;
+
 		mDeathAnimationStart = Position();
 	}
 }
 
 void Player::MarioDeathAnimation()
 {
-	Lerp(mDeathAnimationStart, Vector2(Position().x, )
+	//if (mDeathAnimation == true) {
+	//	Translate(Vec2_Up * m_pTimer->DeltaTime() * mDeathAnimationUp, World);
+	//}
+
+	//Lerp(mDeathAnimationStart, Vector2(Position().x, )
 
 }
