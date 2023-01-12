@@ -9,6 +9,7 @@
 #include "Timer.h"
 #include "Player.h"
 #include "Goomba.h"
+#include"Koopa.h"
 
 using namespace tinyxml2;
 using namespace SDLFramework;
@@ -46,6 +47,7 @@ private:
 	
 	Player* m_pPlayer;
     Goomba* m_pGoomba;
+	Koopa* m_pKoopa;
 
 public:
 	std::vector<Texture*> GetLevelTextures;

@@ -48,6 +48,9 @@ Level::Level() {
 	m_pGoomba->Parent(this);
 	m_pGoomba->Position(Graphics::SCREEN_WIDTH * 0.4f, Graphics::SCREEN_HEIGHT * 0.6f);
 
+	m_pKoopa = new Koopa();
+	m_pKoopa->Parent(this);
+	m_pKoopa->Position(Graphics::SCREEN_WIDTH * 0.4f, Graphics::SCREEN_HEIGHT * 0.6f);
 	
 }
 
@@ -150,6 +153,8 @@ Level::~Level() {
 	delete m_pGoomba;
 	m_pGoomba = nullptr;
 
+	delete m_pKoopa;
+	m_pKoopa = nullptr;
 }
 
 /// <summary>
@@ -212,7 +217,7 @@ void Level::Update(){
 	m_pHUD->Update();
 	m_pPlayer->Update();
 	m_pGoomba->Update();
-
+	m_pKoopa->Update();
 
 	//std::cout << "Level1-1" << std::endl;
 
@@ -246,6 +251,7 @@ void Level::Render()
 			m_pHUD->Render();
 			m_pPlayer->Render();
 			m_pGoomba->Render();
+			m_pKoopa->Render();
 		}
 		break;
 

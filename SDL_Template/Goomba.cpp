@@ -14,7 +14,7 @@ Goomba::Goomba()
 
     m_pGoomba = new AnimatedTexture("Goomba.png", 0, 0, 32, 64, 2, 0.5f, AnimatedTexture::Horizontal);
     m_pGoomba->Parent(this);
-    m_pGoomba->Position(-100.0f, 201.0f);
+    m_pGoomba->Position(-150.0f, 201.0f);
 }
 
 Goomba::~Goomba()
@@ -40,7 +40,7 @@ void Goomba::Move(int direction)
     if (direction == 0)
     {
         xPosition += speed;
-        if (xPosition > 512)
+        if (xPosition > 412)
         {
             xPosition = 0;
         }
@@ -51,7 +51,7 @@ void Goomba::Move(int direction)
         xPosition -= speed;
         if (xPosition < 0)
         {
-            xPosition = 512;
+            xPosition = 412;
         }
         m_pGoomba->Position(xPosition, 201.0f);
     }
