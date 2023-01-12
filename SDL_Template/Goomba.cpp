@@ -24,6 +24,7 @@ Goomba::~Goomba()
 }
 void Goomba::Update()
 {
+    Move(direction);
     m_pGoomba->Update();
 }
 void Goomba::Render()
@@ -32,30 +33,23 @@ void Goomba::Render()
 }
 void Goomba::Move(int direction)
 {
-    for (int x = 0; x < 100; x++)
+    if (direction == 0)
     {
-        //update the position of the enemy
         xPosition += speed;
-
-        //boundary check to make sure the enemy stays on the screen
-        if (xPosition > Graphics::SCREEN_WIDTH)
+        if (xPosition > 512)
         {
             xPosition = 0;
         }
-
-        //update the enemy's position on the screen
-        AnimatedTexture::Horizontal(xPosition, yPosition);
+        m_pGoomba->Position(xPosition, 201.0f);
     }
-    
+    else if (direction == 1)
+    {
+        xPosition -= speed;
+        if (xPosition < 0)
+        {
+            xPosition = 512;
+        }
+        m_pGoomba->Position(xPosition, 201.0f);
+    }
+
 }
-
-//void Goomba:()
-//{
-//}
-
-//void Goomba::Kill()
-//{
-//   
-//}
-
-
