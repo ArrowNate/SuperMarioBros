@@ -43,6 +43,12 @@ Level::Level() {
 	m_pPlayer = new Player();
 	m_pPlayer->Parent(this);
 	m_pPlayer->Position(Graphics::SCREEN_WIDTH * 0.4f, Graphics::SCREEN_HEIGHT * 0.6f);
+
+	m_pGoomba = new Goomba();
+	m_pGoomba->Parent(this);
+	m_pGoomba->Position(Graphics::SCREEN_WIDTH * 0.4f, Graphics::SCREEN_HEIGHT * 0.6f);
+
+	
 }
 
 Level::Level(std::string filename) {
@@ -141,6 +147,9 @@ Level::~Level() {
 	delete m_pPlayer;
 	m_pPlayer = nullptr;
 
+	delete m_pGoomba;
+	m_pGoomba = nullptr;
+
 }
 
 /// <summary>
@@ -202,6 +211,8 @@ void Level::Update(){
 	BlackScreenDelay();
 	m_pHUD->Update();
 	m_pPlayer->Update();
+	m_pGoomba->Update();
+
 
 	//std::cout << "Level1-1" << std::endl;
 
@@ -234,6 +245,7 @@ void Level::Render()
 			m_PTestLevel->Render();
 			m_pHUD->Render();
 			m_pPlayer->Render();
+			m_pGoomba->Render();
 		}
 		break;
 

@@ -8,6 +8,7 @@
 #include "HUD.h"
 #include "Timer.h"
 #include "Player.h"
+#include "Goomba.h"
 
 using namespace tinyxml2;
 using namespace SDLFramework;
@@ -42,9 +43,10 @@ private:
 	TextureGL* m_pMarioLifes;
 	TextureGL* m_pXLifes;
 	TextureGL* m_pMarioSprite;
-	TextureGL* m_pGoomba;
+	
 	Player* m_pPlayer;
 
+	Goomba* m_pGoomba;
 
 public:
 	std::vector<Texture*> GetLevelTextures;
