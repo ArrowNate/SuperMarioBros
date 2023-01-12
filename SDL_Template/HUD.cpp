@@ -131,7 +131,7 @@ void HUD::Update() {
 
 void HUD::Render() {
 	//m_pHUDbackground->Render();
-	
+
 	m_pPlayerName->Render();
 	m_pMarioScore->Render();
 	m_pCoins->Render();
@@ -143,5 +143,6 @@ void HUD::Render() {
 	m_pCountdownTimer->Render();
 
 	//m_pTimeText->Render();
-	
+
+}
 	

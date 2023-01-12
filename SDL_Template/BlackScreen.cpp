@@ -103,7 +103,7 @@ void BlackScreen::Render()
 			m_pMarioLifes->Render();
 			m_pXLifes->Render();
 			m_pMarioSprite->Render();
-			//m_pHUD->Render();
+			m_pHUD->Render();
 			mBlackScreenOff = false;
 		}
 
