@@ -24,7 +24,7 @@ private:
 	bool misMovingRight;
 	bool misMovingLeft;
 	bool mWasHit;
-	bool mDeathAnimation;
+	//bool mDeathAnimation;
 
 	int mScore;
 	int mLives;
@@ -34,7 +34,7 @@ private:
 	//TextureGL* m_pMarioMoving;
 	AnimatedTexture* m_pMarioMovingRight;
 	AnimatedTexture* m_pMarioMovingLeft;
-	Texture* m_pDeathAnimation;
+	TextureGL* m_pDeathAnimation;
 
 	float mCurrentSpeed;
 	float mCurrentSpeedLeft;
@@ -42,6 +42,13 @@ private:
 	float mMoveSpeedLeft;
 	float mMaxSpeed;
 	float mMaxSpeedLeft;
+
+	float mDeathAnimationUp;
+	float mDeathAnimationDown;
+	float mDeathAnimationUpMax;
+	float mDeathAnimationDownMax;
+	bool mDeathAnimationHeight;
+	bool mDeathAnimation;
 
 	Vector2 mDeathAnimationStart;
 	Vector2 mDeathAnimationEnd;
