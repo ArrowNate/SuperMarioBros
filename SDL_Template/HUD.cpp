@@ -125,8 +125,7 @@ void HUD::Update() {
 	m_pWorldLevel->Update();
 	m_pTime->Update();
 	m_pCountdownTimer->Update();
-	
-	//m_pTimeText->Update();
+
 }
 
 void HUD::Render() {
@@ -142,7 +141,6 @@ void HUD::Render() {
 	m_pTime->Render();
 	m_pCountdownTimer->Render();
 
-	//m_pTimeText->Render();
 
 }
 	
