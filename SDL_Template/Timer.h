@@ -30,5 +30,6 @@ namespace SDLFramework {
 		Timer();
 		~Timer();
 	};
+
 }
 #endif
