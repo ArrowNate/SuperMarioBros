@@ -10,17 +10,14 @@ private:
     //Variables
     bool alive;
     int direction;
-    int speed;
+    int speed = 1;
     TextureGL* m_pGoomba;
 
         int xPosition;
         int yPosition;
         int width;
         int height;
-        
-        
-        
-        
+         
         
    
 public:
