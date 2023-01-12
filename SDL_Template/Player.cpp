@@ -37,7 +37,7 @@ Player::Player()
 	m_pMarioMovingLeft->Parent(m_pMarioLeft);
 	m_pMarioMovingLeft->Position(Vec2_Zero);
 
-	m_pDeathAnimation = new Texture("MarioDeath.png", 0, 0, 30, 28);
+	m_pDeathAnimation = new TextureGL("MarioDeath.png", 0, 0, 30, 28);
 	m_pDeathAnimation->Parent(this);
 	m_pDeathAnimation->Position(pos);
 
@@ -52,9 +52,9 @@ Player::Player()
 	mMaxSpeed = 400.0f;
 	mMaxSpeedLeft = -400.0f;
 
-	mDeathAnimationUp = 30.0f;
+	mDeathAnimationUp = 0.0f;
 	mDeathAnimationUpMax = 60.0f;
-	mDeathAnimationDown = -500.0f;
+	mDeathAnimationDown = 0.0f;
 	mDeathAnimationDownMax = -1000.0f;
 	mDeathAnimation = false;
 
@@ -216,7 +216,9 @@ void Player::Render()
 			m_pMarioLeft->Render();
 		}
 		if (mDeathAnimation == true && mAnimatingRight == false && mAnimatingLeft == false && mIdleRight == false && mIdleLeft == false) {
-			m_pDeathAnimation->Render();
+			m_pDeathAnimation->Render(); {
+				mIdleRight = true;
+			}
 		}
 	}
 }
@@ -353,6 +355,10 @@ void Player::MarioDeath()
 
 void Player::MarioDeathAnimation()
 {
+	if (mDeathAnimation == true) {
+
+	}
+
 	//if (mDeathAnimation == true) {
 	//	Translate(Vec2_Up * m_pTimer->DeltaTime() * mDeathAnimationUp, World);
 	//}

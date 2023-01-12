@@ -34,7 +34,7 @@ private:
 	//TextureGL* m_pMarioMoving;
 	AnimatedTexture* m_pMarioMovingRight;
 	AnimatedTexture* m_pMarioMovingLeft;
-	Texture* m_pDeathAnimation;
+	TextureGL* m_pDeathAnimation;
 
 	float mCurrentSpeed;
 	float mCurrentSpeedLeft;
