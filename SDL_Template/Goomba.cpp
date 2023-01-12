@@ -26,6 +26,10 @@ void Goomba::Update()
 {
     Move(direction);
     m_pGoomba->Update();
+
+    // Added code
+    direction = 0;
+    speed = 1.0f;
 }
 void Goomba::Render()
 {
@@ -51,5 +55,4 @@ void Goomba::Move(int direction)
         }
         m_pGoomba->Position(xPosition, 201.0f);
     }
-
 }

@@ -11,7 +11,7 @@ private:
     bool alive;
     int direction;
     int speed ;
-    TextureGL* m_pGoomba;
+    TextureGL * m_pGoomba;
 
         int xPosition;
         int yPosition;
