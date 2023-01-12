@@ -9,7 +9,6 @@ class Goomba : public GameEntity {
 private:
     //Variables
     bool alive;
-    bool isJumping;
     int direction;
     int speed;
     TextureGL* m_pGoomba;
@@ -20,10 +19,8 @@ private:
         int height;
         
         
-        virtual void move(int direction) = 0;
-        virtual void animate() = 0;
-        virtual void kill() = 0;
-        virtual void jump() = 0;
+        
+        
         
    
 public:
@@ -35,9 +32,9 @@ public:
     void Render();
 
     void Move(int direction);
-    void Animate();
-    void Kill();
-    void Jump();
+    //void Animate();
+    //void Kill();
+   
 
 
 

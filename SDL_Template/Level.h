@@ -45,8 +45,7 @@ private:
 	TextureGL* m_pMarioSprite;
 	
 	Player* m_pPlayer;
-
-	Goomba* m_pGoomba;
+    Goomba* m_pGoomba;
 
 public:
 	std::vector<Texture*> GetLevelTextures;
