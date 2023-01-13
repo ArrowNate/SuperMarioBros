@@ -3,11 +3,13 @@
 #include "TextureGL.h"
 #include "HUD.h"
 #include "LevelManager.h"
+#include "Player.h"
 
 using namespace SDLFramework;
 class BlackScreen : public GameEntity
 {
 private:
+	Player* m_pPlayer;
 	enum LevelStage { StageOne, StageTwo };
 	LevelStage mCurrentStage;
 	bool mBlackScreenOff;

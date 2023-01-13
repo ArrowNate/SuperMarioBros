@@ -178,6 +178,7 @@ xcopy "$(ProjectDir)..\Data\*" "$(OutDir)Data\" /y /s</Command>
     <ClCompile Include="OnePlayerGame.cpp" />
     <ClCompile Include="PhysEntity.cpp" />
     <ClCompile Include="PhysicsManager.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="ScoreBoard.cpp" />
     <ClCompile Include="ScreenManager.cpp" />
@@ -213,6 +214,7 @@ xcopy "$(ProjectDir)..\Data\*" "$(OutDir)Data\" /y /s</Command>
     <ClInclude Include="PhysEntity.h" />
     <ClInclude Include="PhysicsHelper.h" />
     <ClInclude Include="PhysicsManager.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="ScoreBoard.h" />
     <ClInclude Include="ScreenManager.h" />
