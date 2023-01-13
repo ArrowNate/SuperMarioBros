@@ -12,9 +12,10 @@ HUD::HUD() {
 	m_pPlayerName->Parent(m_pHUDbackground);
 	m_pPlayerName->Position(-18.8f, 14.0f);
 
-	m_pPlayerScore = new TextureGL("000000", "emulogic.ttf", 20, { 255, 255, 255 });
-	m_pPlayerScore->Parent(m_pHUDbackground);
-	m_pPlayerScore->Position(-18.0f, 33.0f);
+	m_pMarioScore = new ScoreBoard();
+	m_pMarioScore->Score(100000);
+	m_pMarioScore->Parent(m_pHUDbackground);
+	m_pMarioScore->Position(-13.5f, 33.0f);
 
 	m_pCoins = new AnimatedTexture("Coins.png", 0.0f, 0.0f, 14.0f, 20.0f, 2, 0.5f, AnimatedTexture::Horizontal);
 	m_pCoins->Parent(m_pHUDbackground);
@@ -44,6 +45,11 @@ HUD::HUD() {
 	m_pTimeText->Parent(m_pHUDbackground);
 	m_pTimeText->Position(19.0f, 33.0f);
 
+	m_pCountdownTimer = new CountdownTimer();
+	m_pCountdownTimer->Time(400);
+	m_pCountdownTimer->Parent(m_pHUDbackground);
+	m_pCountdownTimer->Position(20.0f, 33.0f);
+
 	mSetTime = 400;
 }
 
@@ -55,8 +61,8 @@ HUD::~HUD () {
 	delete m_pPlayerName;
 	m_pPlayerName = nullptr;
 
-	delete m_pPlayerScore;
-	m_pPlayerScore = nullptr;
+	delete m_pMarioScore;
+	m_pMarioScore = nullptr;
 
 	delete m_pCoins;
 	m_pCoins = nullptr;
@@ -78,46 +84,63 @@ HUD::~HUD () {
 
 	delete m_pTimeText;
 	m_pTimeText = nullptr;
+
+	delete m_pCountdownTimer;
+	m_pCountdownTimer = nullptr;
+
 }
 
-void HUD::TimeCount(int time) {
+//int HUD::TimeRemaining()
+//{
+//	return mSetTime;
+//}
+//
+////void HUD::SubTime()
+////{
+////}
+//
+//void HUD::SetGameTime(int time) {
+//
+//	//mSetTime -= time;
+//	mSetTime = time;
+//	time += -0.1 * m_pTimer->DeltaTime();
+//	std::cout << mSetTime << std::endl;
+//	
+//}
 
-	mSetTime = time;
-	//time += -0.1 * m_pTimer->DeltaTime();
-	std::cout << mSetTime << std::endl;
-}
-void HUD::Countdown() {
-	if (mSetTime > 400)
-		mSetTime -= (1.0f * m_pTimer->DeltaTime());
-	std::stringstream timeString;
-	timeString << static_cast<int>(mSetTime);
-	//m_pTimeText->Text(timeString.str());
+void HUD::SetPlayerScore(int score) {
+	m_pMarioScore->Score(score);
 }
 
 void HUD::Update() {
 
+	
 	m_pHUDbackground->Update();
 	m_pPlayerName->Update();
-	m_pPlayerScore->Update();
+	m_pMarioScore->Update();
 	m_pCoins->Update();
 	m_pMultiply->Update();
 	m_pNumberOfCoins->Update();
 	m_pWorld->Update();
 	m_pWorldLevel->Update();
 	m_pTime->Update();
-	m_pTimeText->Update();
+	m_pCountdownTimer->Update();
+
 }
 
 void HUD::Render() {
 	//m_pHUDbackground->Render();
+
 	m_pPlayerName->Render();
-	m_pPlayerScore->Render();
+	m_pMarioScore->Render();
 	m_pCoins->Render();
 	m_pMultiply->Render();
 	m_pNumberOfCoins->Render();
 	m_pWorld->Render();
 	m_pWorldLevel->Render();
 	m_pTime->Render();
-	//m_pTimeText->Render();
-	
+	m_pCountdownTimer->Render();
+
+
 }
+	

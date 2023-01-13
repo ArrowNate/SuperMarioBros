@@ -2,6 +2,7 @@
 #define __STARTSCREEN_H
 #include "InputManager.h"
 #include "AnimatedTexture.h"
+#include "ScoreBoard.h"
 #include "HUD.h"
 
 using namespace SDLFramework;
@@ -13,7 +14,7 @@ private:
 	HUD* m_pHUD;
 
 	Texture* m_pBackgrounfRef;
-	Texture* m_pTiles;
+	Texture* m_pMainBackground;
 	Timer* m_pTimer;
 	InputManager* m_pInputManager;
 
@@ -29,6 +30,7 @@ private:
 	TextureGL* m_p2Player;
 
 	TextureGL* m_pTopScore;
+	ScoreBoard* m_pTopScoreNumber;
 
 	TextureGL* m_pLogo;
 

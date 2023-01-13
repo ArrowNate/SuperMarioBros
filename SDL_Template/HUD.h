@@ -3,6 +3,8 @@
 #include "Timer.h"
 #include "TextureGL.h"
 #include "AnimatedTexture.h"
+#include "ScoreBoard.h"
+#include "CountdownTimer.h"
 #include <ctime>
 #include <vector>
 
@@ -16,8 +18,11 @@ private:
 	Texture* m_pTimeText;
 	TextureGL* m_pHUDbackground;
 
+	ScoreBoard* m_pMarioScore;
+	ScoreBoard* m_pTopScore;
 	TextureGL* m_pPlayerName;
-	TextureGL* m_pPlayerScore;
+
+	CountdownTimer* m_pCountdownTimer;
 
 	AnimatedTexture* m_pCoins;
 	TextureGL* m_pMultiply;
@@ -32,10 +37,11 @@ public:
 	HUD();
 	~HUD();
 
-	void TimeCount(int time);
-
-	void Countdown();
-
+	int TimeRemaining();
+	//void SubTime();
+	void SetGameTime(int time);
+	void SetPlayerScore(int score);
+	
 	void Update() override;
 	void Render() override;
 
