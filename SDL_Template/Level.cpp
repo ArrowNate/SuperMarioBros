@@ -12,7 +12,6 @@ Level::Level() {
 	m_PBlackScreen->Scale(Vector2(20.0f, 20.0f));
 	m_PBlackScreen->Position(0.0f, 0.0f);
 
-
 	m_PTestLevel = new TextureGL("MainBackground.png");
 	m_PTestLevel->Parent(this);
 	m_PTestLevel->Position(Graphics::SCREEN_WIDTH * 0.5f, Graphics::SCREEN_HEIGHT * 0.5f);
@@ -252,4 +251,3 @@ void Level::Render()
 
 	}
 }
-

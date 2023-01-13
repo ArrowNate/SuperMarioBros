@@ -61,5 +61,5 @@ public:
 	Level(std::string);
 	~Level();
 };
-#endif // !_LEVEL_H
 
+#endif // !_LEVEL_H

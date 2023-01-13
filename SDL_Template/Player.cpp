@@ -58,7 +58,10 @@ Player::Player()
 	mDeathAnimationDownMax = -1000.0f;
 	mDeathAnimation = false;
 
-	mDeathAnimationDone = true;
+	mRespawnDelay = 100.0f;
+	mDeathAnimationOff = true;
+
+	//mDeathAnimationDone = true;
 
 	mMoveBounds = Vector2(172.2f, 550.0f);
 	//mMoveBoundsLeft = Vector2(0.0f, 550.0f);
@@ -168,6 +171,19 @@ void Player::WasHit(bool hit)
 	mWasHit = hit;
 }
 
+bool Player::DeathAnimationOff()
+{
+	return mDeathAnimationOff;
+}
+
+void Player::RespawnDelay()
+{
+	if (mDeathAnimation == true) {
+		mRespawnDelay -= 1.0 * m_pTimer->DeltaTime();
+		std::cout << mRespawnDelay << std::endl;
+	}
+}
+
 void Player::Update()
 {
 	//m_pMario->Update();
@@ -181,6 +197,7 @@ void Player::Update()
 	MarioPhysicsLeft();
 	MarioDeath();
 	MarioDeathAnimation();
+	RespawnDelay();
 	//IsMovingRight();
 	//IsMovingLeft();
 
@@ -216,9 +233,17 @@ void Player::Render()
 			m_pMarioLeft->Render();
 		}
 		if (mDeathAnimation == true && mAnimatingRight == false && mAnimatingLeft == false && mIdleRight == false && mIdleLeft == false) {
-			m_pDeathAnimation->Render(); {
-				mIdleRight = true;
+			if (mRespawnDelay > 0) {
+				if (!mDeathAnimationOff) {
+					m_pDeathAnimation->Render();
+					mDeathAnimationOff = false;
+				}
 			}
+			else {
+				m_pMarioRight->Render();
+				mDeathAnimationOff = true;
+				//mRespawnDelay = 100.0f;
+			}	
 		}
 	}
 }
