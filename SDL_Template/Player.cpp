@@ -182,6 +182,10 @@ void Player::RespawnDelay()
 		mRespawnDelay -= 1.0 * m_pTimer->DeltaTime();
 		std::cout << mRespawnDelay << std::endl;
 	}
+	//if (mDeathAnimation == false) {
+	//	mRespawnDelay = +1.0 * m_pTimer->DeltaTime();
+	//	std::cout << mRespawnDelay << std::endl;
+	//}
 }
 
 void Player::Update()
@@ -220,7 +224,8 @@ void Player::Render()
 	//m_pMarioRight->Render();
 	//IsAnimating();
 	if (!mVisible) {
-		if (mAnimatingRight == false && mIdleRight == true && mIdleLeft == false && mAnimatingLeft == false && mDeathAnimation == false) {
+		mDeathAnimation = false;
+		if (mAnimatingRight == false && mIdleRight == true && mIdleLeft == false && mAnimatingLeft == false && mDeathAnimation == false && mDeathAnimationOff == true) {
 			m_pMarioRight->Render();
 		}
 		if (mAnimatingRight == true && mIdleRight == false && mIdleLeft == false && mAnimatingLeft == false && mDeathAnimation == false) {
@@ -240,10 +245,11 @@ void Player::Render()
 				}
 			}
 			else {
-				m_pMarioRight->Render();
+				mIdleRight = true;
 				mDeathAnimationOff = true;
-				//mRespawnDelay = 100.0f;
-			}	
+				mDeathAnimation = false;
+				mRespawnDelay = 100.0f;
+			}
 		}
 	}
 }
