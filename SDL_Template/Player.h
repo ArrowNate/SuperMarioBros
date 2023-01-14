@@ -43,6 +43,8 @@ private:
 	float mMaxSpeed;
 	float mMaxSpeedLeft;
 
+	int mRespawnDelay;
+	bool mDeathAnimationOff;
 	float mDeathAnimationUp;
 	float mDeathAnimationDown;
 	float mDeathAnimationUpMax;
@@ -83,6 +85,9 @@ public:
 
 	bool WasHit();
 	void WasHit(bool hit);
+
+	bool DeathAnimationOff();
+	void RespawnDelay();
 
 	void Update() override;
 	void Render() override;

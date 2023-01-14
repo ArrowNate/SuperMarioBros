@@ -58,7 +58,10 @@ Player::Player()
 	mDeathAnimationDownMax = -1000.0f;
 	mDeathAnimation = false;
 
-	mDeathAnimationDone = true;
+	mRespawnDelay = 100.0f;
+	mDeathAnimationOff = true;
+
+	//mDeathAnimationDone = true;
 
 	mMoveBounds = Vector2(172.2f, 550.0f);
 	//mMoveBoundsLeft = Vector2(0.0f, 550.0f);
@@ -168,6 +171,23 @@ void Player::WasHit(bool hit)
 	mWasHit = hit;
 }
 
+bool Player::DeathAnimationOff()
+{
+	return mDeathAnimationOff;
+}
+
+void Player::RespawnDelay()
+{
+	if (mDeathAnimation == true) {
+		mRespawnDelay -= 1.0 * m_pTimer->DeltaTime();
+		std::cout << mRespawnDelay << std::endl;
+	}
+	//if (mDeathAnimation == false) {
+	//	mRespawnDelay = +1.0 * m_pTimer->DeltaTime();
+	//	std::cout << mRespawnDelay << std::endl;
+	//}
+}
+
 void Player::Update()
 {
 	//m_pMario->Update();
@@ -181,6 +201,7 @@ void Player::Update()
 	MarioPhysicsLeft();
 	MarioDeath();
 	MarioDeathAnimation();
+	RespawnDelay();
 	//IsMovingRight();
 	//IsMovingLeft();
 
@@ -203,7 +224,8 @@ void Player::Render()
 	//m_pMarioRight->Render();
 	//IsAnimating();
 	if (!mVisible) {
-		if (mAnimatingRight == false && mIdleRight == true && mIdleLeft == false && mAnimatingLeft == false && mDeathAnimation == false) {
+		mDeathAnimation = false;
+		if (mAnimatingRight == false && mIdleRight == true && mIdleLeft == false && mAnimatingLeft == false && mDeathAnimation == false && mDeathAnimationOff == true) {
 			m_pMarioRight->Render();
 		}
 		if (mAnimatingRight == true && mIdleRight == false && mIdleLeft == false && mAnimatingLeft == false && mDeathAnimation == false) {
@@ -216,8 +238,17 @@ void Player::Render()
 			m_pMarioLeft->Render();
 		}
 		if (mDeathAnimation == true && mAnimatingRight == false && mAnimatingLeft == false && mIdleRight == false && mIdleLeft == false) {
-			m_pDeathAnimation->Render(); {
+			if (mRespawnDelay > 0) {
+				if (!mDeathAnimationOff) {
+					m_pDeathAnimation->Render();
+					mDeathAnimationOff = false;
+				}
+			}
+			else {
 				mIdleRight = true;
+				mDeathAnimationOff = true;
+				mDeathAnimation = false;
+				mRespawnDelay = 100.0f;
 			}
 		}
 	}
