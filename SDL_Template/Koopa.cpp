@@ -13,7 +13,7 @@ Koopa::Koopa()
     direction = 0;
     speed = 0;
 
-    m_pKoopa = new AnimatedTexture("KoopaRight.png",0,0, 128,160, 2, 0.5f, AnimatedTexture::Horizontal);
+    m_pKoopa = new AnimatedTexture("KoopaRight.png",0,0, 32,60, 2, 0.5f, AnimatedTexture::Horizontal);
     m_pKoopa->Parent(this);
     m_pKoopa->Position(-100.0f, 184.0f);
 }

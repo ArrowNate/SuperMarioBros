@@ -10,6 +10,9 @@
 #include "Player.h"
 #include "Goomba.h"
 #include"Koopa.h"
+#include "Coin.h"
+#include "Bricks.h"
+
 
 using namespace tinyxml2;
 using namespace SDLFramework;
@@ -48,6 +51,10 @@ private:
 	Player* m_pPlayer;
     Goomba* m_pGoomba;
 	Koopa* m_pKoopa;
+	Coin* m_pCoin;
+	Brick* m_pBrick;
+
+
 
 public:
 	std::vector<Texture*> GetLevelTextures;

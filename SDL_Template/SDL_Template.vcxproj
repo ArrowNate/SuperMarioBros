@@ -160,7 +160,9 @@ xcopy "$(ProjectDir)..\Data\*" "$(OutDir)Data\" /y /s</Command>
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="BoxCollider.cpp" />
+    <ClCompile Include="Bricks.cpp" />
     <ClCompile Include="CircleCollider.cpp" />
+    <ClCompile Include="Coin.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GameEntity.cpp" />
@@ -185,7 +187,6 @@ xcopy "$(ProjectDir)..\Data\*" "$(OutDir)Data\" /y /s</Command>
     <ClCompile Include="ShaderUtil.cpp" />
     <ClCompile Include="StartScreen.cpp" />
     <ClCompile Include="SuperMarioBrosEnemies.cpp" />
-    <ClCompile Include="SuperMarioCoins.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureGL.cpp" />
     <ClCompile Include="TextureSDL.cpp" />
@@ -199,7 +200,9 @@ xcopy "$(ProjectDir)..\Data\*" "$(OutDir)Data\" /y /s</Command>
     <ClInclude Include="AudioAssetManager.h" />
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="BoxCollider.h" />
+    <ClInclude Include="Bricks.h" />
     <ClInclude Include="CircleCollider.h" />
+    <ClInclude Include="Coin.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyStats.h" />
@@ -224,7 +227,6 @@ xcopy "$(ProjectDir)..\Data\*" "$(OutDir)Data\" /y /s</Command>
     <ClInclude Include="ShaderUtil.h" />
     <ClInclude Include="StartScreen.h" />
     <ClInclude Include="stb_image.h" />
-    <ClInclude Include="SuperMarioCoins.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureGL.h" />
     <ClInclude Include="TextureSDL.h" />
