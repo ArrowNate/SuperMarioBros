@@ -5,6 +5,8 @@
 #include "OnePlayerGame.h"
 #include "TwoPlayerGame.h"
 #include "AudioManager.h"
+#include "LevelManager.h"
+#include "BlackScreen.h"
 #include "Level.h"
 
 class ScreenManager {
@@ -20,6 +22,8 @@ private:
 	OnePlayerGame* m_pOnePlayerGame;
 	TwoPlayerGame* m_pTwoPlayerGame;
 
+	LevelManager* m_pLevels;
+	BlackScreen* m_pBlackScreen;
 	Level* m_pLevel1_1;
 
 	int ScreenChoice;

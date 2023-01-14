@@ -5,24 +5,13 @@
 #include <vector>
 #include <string>
 #include "TextureGL.h"
-#include "HUD.h"
-#include "Timer.h"
-#include "Player.h"
-#include "Goomba.h"
-#include"Koopa.h"
-#include "Coin.h"
-#include "Bricks.h"
-
+#include "Tiles.h"
 
 using namespace tinyxml2;
 using namespace SDLFramework;
 
-class Level : public GameEntity{
-
+class Level : public GameEntity {
 private:
-	enum LevelStage {StageOne, StageTwo};
-	LevelStage mCurrentStage;
-
 	int mWidth;
 	int mHeight;
 	int mOffsetX;
@@ -33,37 +22,16 @@ private:
 
 	std::vector<std::vector<char>> mLevelHeight;
 	std::vector<char> mLevel;
-	std::vector<Texture*> m_pLevelTextures;
-	Texture* m_ptile;
+	std::vector<Tiles*> m_pLevelTextures;
+	//Texture* m_ptile;
+	Tiles* m_ptile;
 
-	bool mBlackScreenOff;
-	int mBlackScreenDelay;
-	Texture* m_PBlackScreen;
-	Texture* m_PTestLevel;
-	Timer* m_pTimer;
-	HUD* m_pHUD;
-	TextureGL* m_pLevelWorld;
-	TextureGL* m_pWorldLevelText;
-	TextureGL* m_pMarioLifes;
-	TextureGL* m_pXLifes;
-	TextureGL* m_pMarioSprite;
-	
-	Player* m_pPlayer;
-    Goomba* m_pGoomba;
-	Koopa* m_pKoopa;
-	Coin* m_pCoin;
-	Brick* m_pBrick;
-
-
+	Tiles* m_pTilesAssign;
 
 public:
-	std::vector<Texture*> GetLevelTextures;
-	Texture* LevelTextures(char);
+	std::vector<Tiles*> GetLevelTextures;
+	Tiles* LevelTextures(char);
 
-	bool BlackScreenOff();
-
-	void BlackScreenDelay();
-	void LevelStage();
 	void Update();
 	void Render();
 
@@ -71,5 +39,5 @@ public:
 	Level(std::string);
 	~Level();
 };
-#endif // !_LEVEL_H
 
+#endif // !_LEVEL_H

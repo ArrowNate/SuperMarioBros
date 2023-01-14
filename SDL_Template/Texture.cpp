@@ -41,7 +41,7 @@ namespace SDLFramework {
 		mClipped = false;
 
 		SDL_QueryTexture(mTex, nullptr, nullptr, &mWidth, &mHeight);
-
+		
 		mDestinationRect.w = mWidth;
 		mDestinationRect.h = mHeight;
 	}
