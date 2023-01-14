@@ -6,6 +6,7 @@
 #include <string>
 #include "TextureGL.h"
 #include "Tiles.h"
+#include "Goomba.h"
 
 using namespace tinyxml2;
 using namespace SDLFramework;

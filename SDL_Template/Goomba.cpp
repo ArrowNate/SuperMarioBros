@@ -1,20 +1,24 @@
 #include "Goomba.h"
 #include <chrono>
+#include "level.h"
 
-
+int xPosition;
+int yPosition;
 Goomba::Goomba()
 {
-    alive = true;
-    xPosition = 0;
-    yPosition = 0;
-    width = 0;
-    height = 0;
-    direction = 0;
-    speed = 0;
+    {
+        alive = true;
+        xPosition = GoombaX; // Added code
+        yPosition = GoombaY; // Added code
+        width = 0;
+        height = 0;
+        direction = 0;
+        speed = 0;
 
-    m_pGoomba = new AnimatedTexture("Goomba.png", 0, 0, 32, 64, 2, 0.5f, AnimatedTexture::Horizontal);
-    m_pGoomba->Parent(this);
-    m_pGoomba->Position(-150.0f, 201.0f);
+        m_pGoomba = new AnimatedTexture("Goomba.png", 0, 0, 32, 64, 2, 0.5f, AnimatedTexture::Horizontal);
+        m_pGoomba->Parent(this);
+        m_pGoomba->Position(-150.0f, 201.0f);
+    }
 }
 
 Goomba::~Goomba()
@@ -35,6 +39,8 @@ void Goomba::Render()
 {
     m_pGoomba->Render();
 }
+
+
 void Goomba::Move(int direction)
 {
     if (direction == 0)
@@ -55,4 +61,5 @@ void Goomba::Move(int direction)
         }
         m_pGoomba->Position(xPosition, 201.0f);
     }
+ 
 }

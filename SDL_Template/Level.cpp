@@ -1,5 +1,6 @@
 #include "Level.h"
 
+
 Level::Level() {
 
 	
@@ -18,6 +19,7 @@ Level::Level(std::string filename) {
 	mOffsetY = 31;
 	mTile = 0;
 	mTileInfo = element->GetText(); //<---A string of the information between the data tag from the xml file.
+
 
 	for (int i = 0; i < mTileInfo.length(); i++) {
 		mLevel.push_back(mTileInfo[i]); //<-----pushing each element of the array mTileInfo into a vector
@@ -44,6 +46,11 @@ Level::Level(std::string filename) {
 		}
 		std::cout << std::endl; //<-----Displaying the map into the console for debugging
 	}
+	//add Goomba coordinates here
+	int goombaX = 500;
+	int goombaY = 500;
+
+	mTile = 0;
 
 	//This for loop sets the position and scale of each tile in the m_pLevelTextures vector
 	mTile = 0;
@@ -65,6 +72,13 @@ Level::Level(std::string filename) {
 			x = 0;
 		}
 	}
+	//add Goomba coordinates here
+	//int GoombaX = GoombaX;
+	//int GoombaY = GoombaY;
+
+	//Goomba* goomba = new Goomba();
+	//goomba->Position(Vector2(GoombaX, GoombaY));
+
 	mTile = 0;
 }
 
@@ -232,6 +246,8 @@ Tiles* Level::LevelTextures(char tile) {
 	}
 
 	return m_ptile;
+
+
 }
 
 void Level::Update() {

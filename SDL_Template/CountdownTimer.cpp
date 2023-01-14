@@ -40,14 +40,15 @@ void CountdownTimer::Time(int time)
 void CountdownTimer::Update()
 {
 	
-	//for (unsigned i = 0; i < m_pCountDown.size(); i++) {
-	//	if (m_pCountDown[i] != nullptr) {
-	//		delete m_pCountDown[i];
-	//		//mTimeRemaining += time;
-	//	}
 
-	//}
-	
+	if (mTimeRemaining <= 0) {
+		mTimeRemaining = 400;
+	}
+
+	if (mTimeRemaining > 0) {
+		mTimeRemaining -= 700;
+		Time(0);
+	}
 	
 }
 
@@ -57,5 +58,14 @@ void CountdownTimer::Render()
 	for (auto digit : m_pCountDown) {
 		digit->Render();
 	}
-	
+	if (mTimeRemaining <= 0) {
+		mTimeRemaining = 400;
+	}
+
+	if (mTimeRemaining > 0) {
+		mTimeRemaining -= 700;
+		Time(0);
+	}
+
+
 }

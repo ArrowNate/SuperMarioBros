@@ -114,7 +114,7 @@ void HUD::SetPlayerScore(int score) {
 
 void HUD::Update() {
 
-	
+
 	m_pHUDbackground->Update();
 	m_pPlayerName->Update();
 	m_pMarioScore->Update();
@@ -124,7 +124,7 @@ void HUD::Update() {
 	m_pWorld->Update();
 	m_pWorldLevel->Update();
 	m_pTime->Update();
-	m_pCountdownTimer->Update();
+	m_pCountdownTimer->Update();//calling CountdownTimer::Update()
 
 }
 
@@ -139,8 +139,7 @@ void HUD::Render() {
 	m_pWorld->Render();
 	m_pWorldLevel->Render();
 	m_pTime->Render();
-	m_pCountdownTimer->Render();
-
+	m_pCountdownTimer->Render();//calling CountdownTimer::Render()
 
 }
 	
