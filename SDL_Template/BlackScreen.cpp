@@ -54,7 +54,7 @@ BlackScreen::BlackScreen()
 
 	m_pPlayer = new Player();
 	m_pPlayer->Parent(this);
-	m_pPlayer->Position(Graphics::SCREEN_WIDTH * 0.4f, Graphics::SCREEN_HEIGHT * 0.6f);
+	m_pPlayer->Position(Graphics::SCREEN_WIDTH * 0.4f, Graphics::SCREEN_HEIGHT * 0.56f);
 
 	mBlackScreenOff = false;
 	mBlackScreenDelay = 8000.0f;
@@ -98,7 +98,7 @@ void BlackScreen::Update()
 	BlackScreenDelay();
 	m_pHUD->Update();
 	m_pLevel1_1->Update();
-	m_pPlayer->Update();
+	//m_pPlayer->Update();
 }
 
 void BlackScreen::Render()

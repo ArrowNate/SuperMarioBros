@@ -175,19 +175,21 @@ void Player::Update()
 	//IsAnimating();
 	//Running();
 	HandleMovementRight();
-	HandleMovementLeft();
 	HandleFire();
 	MarioPhysicsRight();
 	MarioPhysicsLeft();
 	MarioDeath();
 	MarioDeathAnimation();
+
 	//IsMovingRight();
 	//IsMovingLeft();
 
 	if (mAnimatingRight == true && mIdleRight == false) {
+
 		m_pMarioMovingRight->Update();
 	}
 	if (mAnimatingRight == false && mIdleRight == true) {
+
 		m_pMarioRight->Update();
 	}
 	if (mAnimatingLeft == true && mIdleLeft == false) {
@@ -232,6 +234,7 @@ void Player::HandleMovementRight()
 		misMovingLeft = false;
 		mAnimatingLeft = false;
 		mIdleLeft = false;
+		
 	}
 	if (m_pInput->KeyReleased(SDL_SCANCODE_D)) {
 		mIdleRight = true;

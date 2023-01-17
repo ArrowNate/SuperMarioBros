@@ -117,4 +117,8 @@ namespace SDLFramework {
 	void GameEntity::Rotate(float amount) {
 		Rotation(mRotation + amount);
 	}
+
+	GameEntity::ObjectName GameEntity::GetObjectType() {
+		return mObjectType;
+	}
 }
