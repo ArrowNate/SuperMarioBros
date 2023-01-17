@@ -11,9 +11,6 @@ Tiles::Tiles(std::string filename, int x, int y, int w, int h)
 
 	mIsAnimated = false;
 
-	AddCollider(new BoxCollider(Vector2(w, h)), Vector2(-w * 0.5f, -h * 0.5f));
-	mId = PhysicsManager::Instance()->RegisterEntity(this, PhysicsManager::CollisionLayers::Hostile);
-	mObjectType = GameEntity::Ground;
 
 }
 
@@ -23,9 +20,6 @@ Tiles::Tiles(std::string filename, int x, int y, int w, int h, int frameCount, f
 
 	mIsAnimated = true;
 
-	AddCollider(new BoxCollider(Vector2(w, h)), Vector2(-w * 0.5f, -h * 0.5f));
-	mId = PhysicsManager::Instance()->RegisterEntity(this, PhysicsManager::CollisionLayers::Hostile);
-	mObjectType = GameEntity::Ground;
 }
 
 Tiles::~Tiles()
@@ -84,5 +78,5 @@ void Tiles::Render()
 	if (m_pAnimTiles != nullptr) {
 		m_pAnimTiles->Render();
 	}
-	PhysEntity::Render();
+	
 }

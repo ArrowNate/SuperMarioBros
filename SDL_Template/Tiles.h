@@ -14,7 +14,7 @@
 using namespace tinyxml2; 
 using namespace SDLFramework;
 
-class Tiles : public PhysEntity
+class Tiles : public GameEntity
 {
 private:
 

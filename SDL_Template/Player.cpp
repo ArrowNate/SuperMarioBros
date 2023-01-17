@@ -175,6 +175,7 @@ void Player::Update()
 	//IsAnimating();
 	//Running();
 	HandleMovementRight();
+	HandleMovementLeft();
 	HandleFire();
 	MarioPhysicsRight();
 	MarioPhysicsLeft();

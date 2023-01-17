@@ -71,7 +71,7 @@ LevelManager::~LevelManager()
 void LevelManager::HandleLevelMovement()
 {
    
-    /* if (m_pLevelInput->KeyDown(SDL_SCANCODE_D)) {
+   /* if (m_pLevelInput->KeyDown(SDL_SCANCODE_LEFT)) {
             m_pLevel1_1[mCurrentLevel]->Translate(Vec2_Right * mlevelCurrentSpeed, World);
             std::cout <<  m_pLevel1_1[mCurrentLevel]->Position().x << std::endl;
       }*/
