@@ -98,7 +98,7 @@ void BlackScreen::Update()
 	BlackScreenDelay();
 	m_pHUD->Update();
 	m_pLevel1_1->Update();
-	//m_pPlayer->Update();
+	m_pPlayer->Update();
 }
 
 void BlackScreen::Render()
