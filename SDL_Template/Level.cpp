@@ -51,12 +51,12 @@ Level::Level(std::string filename) {
 		if (m_pLevelTextures[mTile] != nullptr) {
 			//m_pLevelTextures[mTile]->Scale(Vector2(2, 2));
 			if (m_pLevelTextures[mTile]->GetAnimatedTile()) {
-
 				m_pLevelTextures[mTile]->TilePosition(Vector2(x, y), true);
 			}
 			else {
 				m_pLevelTextures[mTile]->TilePosition(Vector2(x, y));
 			}
+			m_pLevelTextures[mTile]->TileParent(this);
 		}
 		x += mOffsetX;
 		mTile++;
@@ -146,19 +146,19 @@ Tiles* Level::LevelTextures(char tile) {
 
 		//Pipes
 	case 'G':
-		m_ptile = new Tiles("SP_LevelAssets_001.png", 96, 256, 32, 32);
-		break;
-
-	case 'H':
 		m_ptile = new Tiles("SP_LevelAssets_001.png", 0, 96, 32, 32);
 		break;
 
-	case 'I':
+	case 'H':
 		m_ptile = new Tiles("SP_LevelAssets_001.png", 32, 96, 32, 32);
 		break;
 
-	case 'J':
+	case 'I':
 		m_ptile = new Tiles("SP_LevelAssets_001.png", 0, 128, 32, 32);
+		break;
+
+	case 'J':
+		m_ptile = new Tiles("SP_LevelAssets_001.png", 32, 128, 32, 32);
 		break;
 
 		//Cloud 

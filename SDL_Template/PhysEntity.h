@@ -2,6 +2,8 @@
 #define __PHYSENTITY_H
 #include <vector>
 #include "Collider.h"
+#include "BoxCollider.h"
+#include "CircleCollider.h"
 
 class PhysEntity : public GameEntity {
 protected:
@@ -14,6 +16,8 @@ protected:
 	void AddCollider(Collider * collider, Vector2 localPos = Vec2_Zero);
 
 	virtual bool IgnoreCollisions();
+
+	bool narrowPhaseCheck = false;
 
 public:
 	PhysEntity();

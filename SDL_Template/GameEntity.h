@@ -9,6 +9,10 @@ namespace SDLFramework {
 	public:
 
 		enum Space { Local = 0, World = 1 };
+		enum ObjectName {Ground, Bricks, Pipes, Enemies, Questions};
+
+	protected:
+		ObjectName mObjectType;
 
 	private:
 		Vector2 mPosition;
@@ -19,6 +23,8 @@ namespace SDLFramework {
 		GameEntity * mParent;
 
 	public:
+		ObjectName GetObjectType();
+
 		GameEntity(float x = 0.0f, float y = 0.0f);
 		GameEntity(const Vector2 & position);
 		~GameEntity();

@@ -6,17 +6,21 @@
 #include <string>
 #include "TextureGL.h"
 #include "AnimatedTexture.h"
+#include "PhysEntity.h"
+#include "BoxCollider.h"
+#include "PhysicsManager.h"
 
 
 using namespace tinyxml2; 
 using namespace SDLFramework;
 
-class Tiles : public GameEntity
+class Tiles : public PhysEntity
 {
 private:
 
 	TextureGL* m_pLevelTiles;
 	AnimatedTexture* m_pAnimTiles;
+	
 
 	std::vector<char> mLevel;
 	std::vector<Texture*> m_pLevelTextures;
@@ -34,6 +38,7 @@ public:
 	bool GetAnimatedTile();
 	void TilePosition(Vector2 pos);
 	void TilePosition(Vector2 pos, bool isAnimated);
+	void TileParent(GameEntity* parent);
 
 	void Update();
 	void Render();

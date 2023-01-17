@@ -6,6 +6,8 @@
 //#include "Fire.h"
 #include "Timer.h"
 
+
+
 using namespace SDLFramework;
 
 class Player : public GameEntity
@@ -91,8 +93,10 @@ public:
 
 	void Update() override;
 	void Render() override;
+	
 
 private:
+
 	void HandleMovementRight();
 	void HandleMovementLeft();
 	void HandleFire();
