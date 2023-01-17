@@ -53,6 +53,7 @@ Player::Player()
 	mMaxSpeedLeft = -400.0f;
 
 	mDeathAnimationUp = 0.0f;
+	//mCurrentDeathSpeedUp = 0.0f;
 	mDeathAnimationUpMax = 60.0f;
 	mDeathAnimationDown = 0.0f;
 	mDeathAnimationDownMax = -1000.0f;
@@ -84,6 +85,9 @@ Player::~Player()
 
 	delete m_pMarioMovingLeft;
 	m_pMarioMovingLeft = nullptr;
+
+	delete m_pDeathAnimation;
+	m_pDeathAnimation = nullptr;
 }
 
 //bool Player::IsMovingRight()
@@ -181,6 +185,10 @@ void Player::RespawnDelay()
 	if (mDeathAnimation == true) {
 		mRespawnDelay -= 1.0 * m_pTimer->DeltaTime();
 		std::cout << mRespawnDelay << std::endl;
+		if (mRespawnDelay == 0) {
+			mDeathAnimation = false;
+			std::cout << mRespawnDelay << std::endl;
+		}
 	}
 	//if (mDeathAnimation == false) {
 	//	mRespawnDelay = +1.0 * m_pTimer->DeltaTime();
@@ -205,17 +213,21 @@ void Player::Update()
 	//IsMovingRight();
 	//IsMovingLeft();
 
-	if (mAnimatingRight == true && mIdleRight == false) {
-		m_pMarioMovingRight->Update();
-	}
-	if (mAnimatingRight == false && mIdleRight == true) {
+	mDeathAnimation = false;
+	if (mAnimatingRight == false && mIdleRight == true && mIdleLeft == false && mAnimatingLeft == false && mDeathAnimation == false) {
 		m_pMarioRight->Update();
 	}
-	if (mAnimatingLeft == true && mIdleLeft == false) {
+	if (mAnimatingRight == true && mIdleRight == false && mIdleLeft == false && mAnimatingLeft == false && mDeathAnimation == false) {
+		m_pMarioMovingRight->Update();
+	}
+	if (mAnimatingLeft == true && mIdleRight == false && mIdleLeft == false && mAnimatingRight == false && mDeathAnimation == false) {
 		m_pMarioMovingLeft->Update();
 	}
-	if (mAnimatingLeft == false && mIdleLeft == true) {
+	if (mAnimatingLeft == false && mIdleRight == false && mIdleLeft == true && mAnimatingRight == false && mDeathAnimation == false) {
 		m_pMarioLeft->Update();
+	}
+	if (mDeathAnimation == true && mAnimatingRight == false && mAnimatingLeft == false && mIdleRight == false && mIdleLeft == false) {
+		m_pDeathAnimation->Update();
 	}
 }
 
@@ -225,7 +237,7 @@ void Player::Render()
 	//IsAnimating();
 	if (!mVisible) {
 		mDeathAnimation = false;
-		if (mAnimatingRight == false && mIdleRight == true && mIdleLeft == false && mAnimatingLeft == false && mDeathAnimation == false && mDeathAnimationOff == true) {
+		if (mAnimatingRight == false && mIdleRight == true && mIdleLeft == false && mAnimatingLeft == false && mDeathAnimation == false) {
 			m_pMarioRight->Render();
 		}
 		if (mAnimatingRight == true && mIdleRight == false && mIdleLeft == false && mAnimatingLeft == false && mDeathAnimation == false) {
@@ -244,7 +256,7 @@ void Player::Render()
 					mDeathAnimationOff = false;
 				}
 			}
-			else {
+			if (mRespawnDelay = 0) {
 				mIdleRight = true;
 				mDeathAnimationOff = true;
 				mDeathAnimation = false;
@@ -380,15 +392,16 @@ void Player::MarioDeath()
 
 		std::cout << "Death" << std::endl;
 
-		mDeathAnimationStart = Position();
+		//mDeathAnimationStart = Position();
 	}
 }
 
 void Player::MarioDeathAnimation()
 {
-	if (mDeathAnimation == true) {
+	//Translate(Vec2_Up * (mCurrentDeathSpeedUp + mDeathAnimationUp) * m_pTimer->DeltaTime() * (std::cos(Rotation()), std::sin(Rotation()), World));
+	//if (mDeathAnimation == true) {
 
-	}
+	//}
 
 	//if (mDeathAnimation == true) {
 	//	Translate(Vec2_Up * m_pTimer->DeltaTime() * mDeathAnimationUp, World);
